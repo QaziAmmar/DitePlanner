@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "0C6BF755-0C60-4D0B-AB0F-E35094EF2804"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E4112AA-634D-4199-BC43-30C10210267B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "dietPlanner/Views/RecipeViews/RecipeModel/RecipeViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "readFavRecipe(firebaseId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9E4112AA-634D-4199-BC43-30C10210267B - 6db8aa9e8a964eea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "dietPlanner.RecipeViewModel.readFavRecipe(firebaseId: Swift.String) -&gt; ()"
+                  moduleName = "dietPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qaziammar/Downloads/dietPlanner/dietPlanner/Views/RecipeViews/RecipeModel/RecipeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "61">
+               </Location>
+               <Location
+                  uuid = "9E4112AA-634D-4199-BC43-30C10210267B - acc4a7d51ac46634"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRDataSnapshot, Swift.Optional&lt;Swift.String&gt;) -&gt; () in dietPlanner.RecipeViewModel.readFavRecipe(firebaseId: Swift.String) -&gt; ()"
+                  moduleName = "dietPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qaziammar/Downloads/dietPlanner/dietPlanner/Views/RecipeViews/RecipeModel/RecipeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "248">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -11,6 +11,8 @@ struct ShoppingCheckListRow: View {
     
     @Binding var shoppingItem: ShoppingItemModel
     @ObservedObject var vm: ShoppingCheckListViewModel
+    var isEditing = false
+    
     
     var body: some View {
         loadView()
@@ -34,14 +36,33 @@ extension ShoppingCheckListRow {
             
             Spacer()
             
-            Button {
-                shoppingItem.isChecked = !shoppingItem.isChecked
-                vm.updateShoppingItem(shoppingItem: shoppingItem)
-            } label: {
-                Image(shoppingItem.isChecked ? ImageName.check.rawValue : ImageName.unckeck.rawValue)
-                    .resizable()
-                    .frame(width: 20, height: 20)
+            if isEditing {
+                deleteButton()
+            } else {
+                editButton()
             }
+        }
+    }
+    
+    
+    func editButton() -> some View {
+        Button {
+            shoppingItem.isChecked = !shoppingItem.isChecked
+            vm.updateShoppingItem(shoppingItem: shoppingItem)
+        } label: {
+            Image(shoppingItem.isChecked ? ImageName.check.rawValue : ImageName.unckeck.rawValue)
+                .resizable()
+                .frame(width: 20, height: 20)
+        }
+    }
+    
+    func deleteButton() -> some View {
+        Button {
+            vm.deleteShppingItem(shoppingItem: shoppingItem)
+        } label: {
+            Image(ImageName.delete.rawValue)
+                .resizable()
+                .frame(width: 20, height: 20)
         }
     }
     

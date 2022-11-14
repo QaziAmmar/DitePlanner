@@ -91,7 +91,8 @@ extension SearchBreakFastView {
     
     func scanBar() -> some View {
             NavigationLink(
-                destination: WeeklyMealPlan(firebaseId: firebaseId)    .navigationBarTitle("")
+                destination: MealCategoryView(planType: "", vm: HomeViewModel())
+                    .navigationBarTitle("")
                     .navigationBarHidden(true)
             , label: {
                 ZStack() {

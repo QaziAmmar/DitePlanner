@@ -50,7 +50,6 @@ struct MyCalendarY: UIViewControllerRepresentable {
 extension MyCalendarY.Coordinator :  AYHorindarDelegate{
     func current(date: Date) {
         
-        
         if   firstTime == true {
             firstTime  = false
             onDatePicked(date)
@@ -99,35 +98,24 @@ extension MyCalendarY.Coordinator :  AYHorindarUIDelegate{
     func selectedDate() -> Date{
         return Date()
     }
-    
-    
+
     func topLabelTextColor() -> UIColor {
-        
-        return .systemGray
-        
+        return .gray
     }
-    
+
     func bottomLabelTextColor() -> UIColor {
-        return .systemGray
+        return .gray
     }
     
     func topLabelSelectedTextColor() -> UIColor {
-         //Color(hex: "#F48B34").uiColor()
-        //return UIColor(hexString: "#9DFFFC")
         return .white
     }
-    
     func bottomLabelSelectedTextColor() -> UIColor {
-//         Color(hex: "#F48B34").uiColor()
-        //return UIColor(hexString: "#9DFFFC")
         return .white
-        
     }
     func backgorundColor() -> UIColor {
-        return UIColor(hexString: "#FFF7EB")
-
+        return .white
     }
-    
     func viewSelectedColor() -> UIColor {
         return UIColor(patternImage: UIImage(named: "gradient_img")!)
     }

@@ -12,14 +12,14 @@ struct TabBarControllerView: View {
     @State private var tabSelection = 0
 
     init() {
-        UITabBar.appearance().backgroundColor = UIColor(named: ColorName.appMainLight.rawValue)
+//        UITabBar.appearance().backgroundColor = UIColor(named: ColorName.appMainLight.rawValue)
         UITabBar.appearance().unselectedItemTintColor = .gray
     }
     
     var body: some View {
         TabView(selection: $tabSelection) {
             
-            TabViewsContainer(view: MealPlannerView())
+            TabViewsContainer(view: HomeView())
                 .tabItem {
                     VStack {
                         Image(ImageName.meal.rawValue)
@@ -35,7 +35,7 @@ struct TabBarControllerView: View {
                 .tabItem {
                     
                     VStack {
-                        Image(ImageName.cart.rawValue)
+                        Image(systemName: "cart.fill")
                             .renderingMode(.template)
                         Text("Shopping List")
                     }
@@ -54,6 +54,19 @@ struct TabBarControllerView: View {
 
                 }
                 .tag(2)
+            
+            
+            
+            TabViewsContainer(view: SettingView())
+                .tabItem {
+                    VStack {
+                        Image(systemName: "ellipsis")
+                            .renderingMode(.template)
+                        Text("More")
+                    }
+
+                }
+                .tag(3)
 
         }
         .accentColor(Color(ColorName.appGreen.rawValue))

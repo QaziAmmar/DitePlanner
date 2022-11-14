@@ -108,4 +108,11 @@ extension ShoppingCheckListViewModel {
             database.child(tableName).child(userID).child(categoryName).child(id).updateChildValues(shoppingItem.convertToDictionary!)
         }
     }
+    
+    
+    func deleteShppingItem(shoppingItem: ShoppingItemModel) {
+        if let id = shoppingItem.id {
+            database.child(tableName).child(userID).child(categoryName).child(id).removeValue()
+        }
+    }
 }

@@ -51,7 +51,7 @@ extension HorizontalTabSelection {
 
 struct HorizontalTabSelection_Previews: PreviewProvider {
     static var previews: some View {
-        HorizontalTabSelection(categores: ["Dinner", "Snack/Other", "Lunch", "Breakfast"], selectedIndex: .constant(2))
+        HorizontalTabSelection(categores: ["Dinner", "Snack-Other", "Lunch", "Breakfast"], selectedIndex: .constant(2))
     }
 }
 

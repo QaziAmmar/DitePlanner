@@ -19,6 +19,7 @@ enum UserDefaultEnum: String {
     case dayilyCheckList
     case todoList
     case walkThrough
+    case startDateOfWeek
 }
 
 
@@ -116,6 +117,14 @@ class UserDefaultManager {
     
     /// End Walk Through Section
     
+    // these function will use to handle scenarois for weekly meal plane
+    func setStartDateOfWeek(date: Date) {
+        userDefaults.set(date, forKey: UserDefaultEnum.startDateOfWeek.rawValue)
+    }
+    func getStartDateOfWeek() -> Date? {
+        return userDefaults.value(forKey: UserDefaultEnum.startDateOfWeek.rawValue) as? Date
+    }
+    // end of function, that will use to handle scenarois for weekly meal plane
     
     func isNewDateStarted_DailyCheckList() -> (Bool, Int) {
         

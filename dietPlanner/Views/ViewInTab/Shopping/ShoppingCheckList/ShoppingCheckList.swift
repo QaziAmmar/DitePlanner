@@ -12,6 +12,7 @@ struct ShoppingCheckList: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var showAddItem = false
     var categoryName: String
+    @State private var isEditing = false
     
     @StateObject var vm = ShoppingCheckListViewModel()
     
@@ -35,15 +36,13 @@ extension ShoppingCheckList {
         ZStack(alignment: .bottomTrailing) {
             
             // shows the list of rows
-
             VStack {
-                NavBar(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }, title: "Fruits & Vegetables")
-                .padding(.vertical)
                 
+                navBar()
+                    .padding(.top)
+
                 listView()
-                    .padding()
+                    
             }
             
             CreateNewBtn {
@@ -52,6 +51,38 @@ extension ShoppingCheckList {
         }
     }
     
+    func navBar() -> some View {
+        HStack {
+            Button {
+                self.presentationMode.wrappedValue.dismiss()
+            } label: {
+                
+                Image("back")
+                    .resizable()
+                    .frame(width: 16, height: 16)
+                    .foregroundColor(Color(ColorName.appGreen.rawValue))
+            }
+            .frame(width: 50, height: 50)
+            Spacer()
+            Text("Fruits & Vegetables")
+                .font(Font.custom(Nunito.Bold.rawValue, size: 22))
+                .foregroundColor(Color(ColorName.appGreen.rawValue))
+            Spacer()
+            
+            Button {
+                isEditing = !isEditing
+            } label: {
+                if isEditing {
+                    Text("Done")
+                        .padding(.trailing)
+                } else {
+                    Image(systemName: "ellipsis")
+                        .frame(width: 50, height: 50)
+                        .rotationEffect(.degrees(-90))
+                }
+            }
+        }
+    }
     
     func listView() -> some View {
         ScrollView {
@@ -69,10 +100,10 @@ extension ShoppingCheckList {
                     }
                 }
                 ForEach($vm.shopping_items_array) { item in
-                    ShoppingCheckListRow(shoppingItem: item, vm: vm)
+                    ShoppingCheckListRow(shoppingItem: item, vm: vm, isEditing: isEditing)
                 }
             }
-        }
+        }.padding()
     }
 }
 

@@ -43,7 +43,7 @@ struct RecipeCard: View {
                             recipe.isLiked.toggle()
                             recipe.updated_at = Date().timeIntervalSince1970
                             
-                            vm.likeRecipe(recipe: recipe)
+//                            vm.likeRecipe(recipe: recipe)
 
                         } label: {
                             Image(recipe.isLiked == true ? Heart.heartFill.rawValue : Heart.heart.rawValue)
@@ -56,10 +56,7 @@ struct RecipeCard: View {
                     .frame(width: 150, height: 63)
                 }
         }
-        
     }
-    
-    
 }
 
 

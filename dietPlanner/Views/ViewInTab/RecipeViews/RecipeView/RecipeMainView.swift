@@ -63,17 +63,6 @@ extension RecipeMainView {
                     self.moveToAddNewRecipe.toggle()
                 }.padding()
             }
-
-
-            // sidemenu view
-            ZStack {
-                SideMenu(width: 300,
-                         isOpen: self.menuOpen,
-                         menuClose: self.openMenu,
-                         onClick: { selectedView in
-                    self.performNavigation(at: selectedView)
-                })
-            }
         }
     }
 

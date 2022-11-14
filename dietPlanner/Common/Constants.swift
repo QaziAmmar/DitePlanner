@@ -49,6 +49,8 @@ enum ImageName: String {
     case unckeck = "unckeck"
     case check = "check"
     
+    case delete = "delete"
+    case dropDown = "dropDown"
     
 }
 
@@ -73,9 +75,7 @@ enum ColorName: String {
     
     case categorybg1 = "categorybg1"
     case categorybg2 = "categorybg2"
-
     
-
 }
 
 enum RobotoCondensed: String {
@@ -117,11 +117,10 @@ enum FireBaseTable: String {
     case dislike_food = "dislike_food"
     case users = "Users"
     case shoppingList = "shopping_list"
+    case mealPlanner = "meal_planner"
+    case weekly_meal_plan = "weekly_meal_plan"
+    case start_date_of_week = "start_date_of_week"
     
-    case checkList = "DailyCheckList"
-    case TDL = "TDL"
-    case GratitudeJournal = "GratitudeJournal"
-    case likeQuots = "LikeQuots"
 }
 
 
@@ -175,4 +174,7 @@ enum Nunito: String {
     case ExtraBold = "Nunito-ExtraBold"
 }
 
+// Constant Variable for whole app
 let SOCIAL_PASSWORD = "social_password"
+let DAILY = "Daily"
+let WEEKLY = "Weekly"

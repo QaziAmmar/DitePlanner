@@ -18,7 +18,7 @@ struct AddRecipeView: View {
     @ObservedObject var vm: RecipeViewModel
     @State var retrievedImages = [UIImage]()
     @State private var showPicker = false
-    
+    var recipeDifficulities = ["Easy", "Medium", "Hard"]
     
     var body: some View {
         loadView()
@@ -30,68 +30,118 @@ struct AddRecipeView: View {
 extension AddRecipeView {
     
     func loadView() -> some View {
-        VStack {
-            NavBar(action: {
-                self.presentationMode.wrappedValue.dismiss()
-            }, title: "Add a Recipe")
+        
+        
+        GeometryReader { geometry in
             
-            CustomTextField(placeHolder: "Enter recipe title here", text: $vm.recipeModel.name, background: Color(ColorName.appMain.rawValue))
-            
-            MLBTextEditor(title: "", text: $vm.recipeModel.details, placeholder: "Ingredients and the method of preparation...")
-                .frame(maxHeight: 300)
-            
-            VStack(alignment: .leading) {
-                Button {
-                    showPicker.toggle()
-                } label: {
-                    ZStack {
-                        if vm.recipeImage == nil {
-                            Image("qorma")
-                                .resizable()
-                                .frame( height: 100)
-                        } else {
-                            Image(uiImage: vm.recipeImage!)
-                                .resizable()
-                                .frame( height: 100)
+            ScrollView {
+                ZStack(alignment: .top) {
+                    
+                    VStack() {
+                        
+                        topImage(geometry: geometry)
+                        
+                        VStack {
+                            
+                            CustomTextField(placeHolder: "Enter recipe title here", text: $vm.recipeModel.name)
+                            foodNuterients()
+                            
+                            CustomTextField(placeHolder: "30 Min", text: $vm.recipeModel.makeTime)
+                            
+                            MenuSelection(itemArray: recipeDifficulities, placeholder: "Easy", selection: $vm.recipeModel.make_difficulity)
+                            
+                            MLBTextEditor(title: "", text: $vm.recipeModel.details, placeholder: "Ingredients and the method of preparation...")
+                                .frame(height: 200)
+                            
+                            GreenBtn(action: {
+                                
+                                vm.createRecipe { status, message in
+                                    if status {
+                                        vm.recipeImage = nil
+                                        self.presentationMode.wrappedValue.dismiss()
+                                    } else {
+                                        self.vm.showError(message: message)
+                                    }
+                                }
+                                
+                            }, title: "Save")
+                            
                         }
-                        HStack{
-                            Text("+").font(.custom(Nunito.Bold.rawValue, size: 22))
+                        .background(
+                            Rectangle()
                                 .foregroundColor(.white)
-                            Text("Attach a Photo").font(.custom(Nunito.Regular.rawValue, size: 20))
-                                .foregroundColor(.white)
-                        }
+                                .cornerRadius(30, corners: [.topLeft, .topRight])
+                                .padding(-20)
+                        )
+                        .padding()
+                        .offset(y: -65)
+                        .padding(.bottom, -65)
+                        
                     }
-                }
-                
-            }
-            .padding([.top],30)
-            
-            
-            Spacer()
-            
-            GreenBtn(action: {
-                
-                vm.createRecipe { status, message in
-                    if status {
-                        vm.recipeImage = nil
+                    
+                    NavBar(action: {
                         self.presentationMode.wrappedValue.dismiss()
-                    } else {
-                        self.vm.showError(message: message)
-                    }
+                    }, title: "")
+                    .padding(.top, 40)
+                    
                 }
-
-            }, title: "Save")
-   
-        }
-        .padding()
-        .sheet(isPresented: $showPicker) {
-            ImagePickerView(sourceType: .photoLibrary) { image in
-                vm.recipeImage = image
+                .frame(width: geometry.size.width)
+                
+            }
+            .edgesIgnoringSafeArea(.top)
+            .sheet(isPresented: $showPicker) {
+                ImagePickerView(sourceType: .photoLibrary) { image in
+                    vm.recipeImage = image
+                }
             }
         }
-        .background(Color("bgclr"))
     }
     
+    
+    /// use to selet the image for recipe
+    func topImage(geometry: GeometryProxy) -> some View {
+        Button {
+            showPicker.toggle()
+        } label: {
+            
+            if vm.recipeImage == nil {
+                ZStack {
+                    Image(ImageName.genricPlaceHolder.rawValue)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: geometry.size.width, height: geometry.size.height / 2.3)
+                        .clipped()
+                    HStack {
+                        Image(systemName: "plus")
+                        Text("Add Image")
+                    }.foregroundColor(Color(ColorName.appGreen.rawValue))
+                }
+                
+            } else {
+                Image(uiImage: vm.recipeImage!)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geometry.size.width, height: geometry.size.height / 2.3)
+                    .clipped()
+            }
+        }
+    }
+    
+    func foodNuterients() -> some View {
+        VStack(alignment: .leading, spacing: 5) {
+            CustomDivider()
+                .frame(height: 3)
+                .padding(.vertical)
+            
+            Text("Food Nutrients")
+                .font(Font.custom(Nunito.Bold.rawValue, size: 20))
+            FoodNutrientsTextField(text: $vm.recipeModel.calories, title: "Calories")
+            FoodNutrientsTextField(text: $vm.recipeModel.protenis, title: "Protenis")
+            FoodNutrientsTextField(text: $vm.recipeModel.fat, title: "Fat")
+            FoodNutrientsTextField(text: $vm.recipeModel.carbohydrates, title: "Carbohydrates")
+            
+        }
+    }
     
 }
 

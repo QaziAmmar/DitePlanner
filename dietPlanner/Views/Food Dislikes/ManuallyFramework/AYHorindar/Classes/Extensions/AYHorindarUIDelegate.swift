@@ -57,14 +57,14 @@ public extension AYHorindarUIDelegate {
     }
     
     func topLabelSelectedTextColor() -> UIColor {
-        return UIColor(hexString: "#F48B34")//.black
+        return .white
     }
     
     func bottomLabelSelectedTextColor() -> UIColor {
-        return UIColor(hexString: "#F48B34")//.black
+        return .white
     }
     func viewSelectedColor() -> UIColor{
-        return UIColor(hexString: "#00A7A1")
+        return .white
     }
     func viewColor() -> UIColor{
         .white

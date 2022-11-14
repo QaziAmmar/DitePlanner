@@ -24,6 +24,7 @@ class RecipeViewModel: ObservableObject {
 
     // Firebase Variable
     let userID = UserDefaultManager.shared.userId
+    let userName = UserDefaultManager.shared.userName
     private let database = Database.database().reference()
     let tableName = FireBaseTable.recipes.rawValue
 }
@@ -40,6 +41,7 @@ extension RecipeViewModel {
     // check text field validation
     private func validationCheck() -> Bool {
 
+        
         if recipeModel.details.isEmpty || recipeModel.name.isEmpty {
             showError(message: "Please fill all the fields")
             return false
@@ -47,6 +49,11 @@ extension RecipeViewModel {
         // check either recipe image is selected
         if recipeImage == nil {
             showError(message: "Please select receipe image")
+            return false
+        }
+        
+        if ((recipeModel.fat.isEmpty) || (recipeModel.calories.isEmpty) || (recipeModel.protenis.isEmpty) || (recipeModel.carbohydrates.isEmpty) ) {
+            showError(message: "Please fill food Nutrients")
             return false
         }
 
@@ -81,8 +88,9 @@ extension RecipeViewModel {
             switch status {
 
             case true:
+                // adding some meta data with recipe model
                 self.recipeModel.img_url = path
-
+                self.recipeModel.userName = self.userName
                 // upload the data
                 FirebaseDatabaseManager.shared.insertRecipe(with: self.recipeModel) { status, id in
                     self.recipeModel = RecipeModel()

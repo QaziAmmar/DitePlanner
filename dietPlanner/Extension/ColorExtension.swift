@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import SwiftUI
 
-let appColorArray = ["appYellow", "Ferozi", "homeColor", "Orange", "blue", "green"]
+let appColorArray = ["bgGray", "bgGreen", "bgPink", "bgPurple", "bgSky", "bgYellow"]
 
 extension Color {
     
@@ -54,10 +54,12 @@ extension Color {
 
 
 /// this function will generate the random color each time
-func randomColorGenerator(index: Int) -> Color {
-    let randomInt = index % 5
+func randomColorGenerator() -> Color {
+    let randomInt = Int(arc4random()) % 6
     return Color(appColorArray[randomInt])
 }
+
+
 
 
 extension EditMode {

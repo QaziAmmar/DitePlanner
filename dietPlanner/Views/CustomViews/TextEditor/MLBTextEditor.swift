@@ -47,7 +47,6 @@ struct MLBTextEditor: View {
                     .focused($detailIsFocused)
                     .opacity(text.wrappedValue.isEmpty ? 0.25 : 1)
                     .foregroundColor(self.text.wrappedValue == placeHolder ? .gray : .primary)
-                    .colorMultiply(Color(ColorName.appMain.rawValue))
                 // this onchange method is use to close the keyboard
                     .onChange(of: text.wrappedValue) { _ in
                         if !text.wrappedValue.filter({ $0.isNewline }).isEmpty {

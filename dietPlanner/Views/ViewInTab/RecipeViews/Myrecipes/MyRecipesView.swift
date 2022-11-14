@@ -26,7 +26,6 @@ struct MyRecipesView: View {
             }
             
         }.onAppear{
-            
             filteredRecipes = vm.recipesArray.filter{ recipe in
                 return recipe.isLiked
             }

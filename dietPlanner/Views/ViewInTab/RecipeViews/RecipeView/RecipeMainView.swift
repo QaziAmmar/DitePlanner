@@ -15,13 +15,8 @@ struct RecipeMainView: View {
     @StateObject var vm = RecipeViewModel()
 
     //    Navigation Variables
-    @State private var moveToPreferences = false
-    @State private var moveToEditProfile = false
-    @State private var moveToChangePassword = false
-    @State private var moveToGoals = false
     @State private var moveToAddNewRecipe = false
 
-    // Present View Variables
 
 
 
@@ -55,7 +50,7 @@ extension RecipeMainView {
                 Spacer()
 
             }.padding()
-                .background(Color("bgclr"))
+                
 
             // show this button only on My recipe view
             if currentTab == 1 {
@@ -68,23 +63,6 @@ extension RecipeMainView {
 
     func navBarView() -> some View {
         ZStack{
-            HStack{
-
-                if !self.menuOpen {
-                    Button(action: {
-                        self.openMenu()
-                    },
-                           label: {
-
-                        Image("Drawer")
-                            .resizable()
-                            .frame(width: 24.0, height: 24.0)
-                    })
-
-                }
-                Spacer()
-
-            }
             Text("Meal Planner")
                 .font(.custom(Nunito.Bold.rawValue, size: 22.5))
                 .foregroundColor(Color(ColorName.appAqua.rawValue))
@@ -109,34 +87,9 @@ extension RecipeMainView {
 // MARK: Custom Function extension
 extension RecipeMainView {
 
-    // function to open/close menu
-    func openMenu() {
-        self.menuOpen.toggle()
-    }
-
-    func performNavigation(at view: NavViews) {
-        self.menuOpen.toggle()
-        switch view {
-        case .preferences:
-            moveToPreferences = true
-        case .edit_profile:
-            moveToEditProfile = true
-        case .change_password:
-            moveToChangePassword = true
-        case .logout:
-            UserDefaultManager.shared.logout()
-        case .goals:
-            moveToGoals = true
-        }
-    }
-
     var hiddenNavigationLinks: some View {
 
         ZStack() {
-                        NavigationLink("", destination: HideNavbarOf(view: ChangePreferenceView()) , isActive: $moveToPreferences)
-                        NavigationLink("", destination: HideNavbarOf(view: EditProfileView()), isActive: $moveToEditProfile)
-                        NavigationLink("", destination: HideNavbarOf(view: ChangePasswordView()), isActive: $moveToChangePassword)
-                        NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView()), isActive: $moveToGoals)
             NavigationLink("", destination: HideNavbarOf(view: AddRecipeView(vm: vm)), isActive: $moveToAddNewRecipe)
                     }
                     .hidden()

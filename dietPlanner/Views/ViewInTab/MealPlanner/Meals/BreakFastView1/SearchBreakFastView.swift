@@ -22,7 +22,7 @@ struct SearchBreakFastView: View {
             }.padding([.top])
             Spacer()
         }.padding()
-        .background(Color("bgclr"))
+        
     }
 }
 

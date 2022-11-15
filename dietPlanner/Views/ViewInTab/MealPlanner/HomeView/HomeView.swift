@@ -35,9 +35,6 @@ struct HomeView: View {
             .alert(isPresented: $vm.showError) {
                 Alert(title: Text(vm.errorMessage))
             }
-            .background(
-                hiddenNavigationLinks
-            )
     }
 }
 
@@ -143,43 +140,6 @@ extension HomeView {
     
 }
 
-// MARK: - Custom Function Extesnion
-extension HomeView {
-    
-    
-    // function to open/close menu
-    func openMenu() {
-        self.menuOpen.toggle()
-    }
-    
-    func performNavigation(at view: NavViews) {
-        self.menuOpen.toggle()
-        switch view {
-        case .preferences:
-            moveToPreferences = true
-        case .edit_profile:
-            moveToEditProfile = true
-        case .change_password:
-            moveToChangePassword = true
-        case .logout:
-            UserDefaultManager.shared.logout()
-        case .goals:
-            moveToGoals = true
-        }
-    }
-    
-    var hiddenNavigationLinks: some View {
-        
-        ZStack() {
-            NavigationLink("", destination: HideNavbarOf(view: ChangePreferenceView()) , isActive: $moveToPreferences)
-            NavigationLink("", destination: HideNavbarOf(view: EditProfileView()), isActive: $moveToEditProfile)
-            NavigationLink("", destination: HideNavbarOf(view: ChangePasswordView()), isActive: $moveToChangePassword)
-            NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView()), isActive: $moveToGoals)
-        }
-        .hidden()
-        .frame(height: 0)
-    }
-}
 
 
 

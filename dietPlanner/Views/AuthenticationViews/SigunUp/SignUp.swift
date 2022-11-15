@@ -58,7 +58,6 @@ extension SignUp {
                 Alert(title: Text(vm.errorMessage))
             }
         }.ignoresSafeArea()
-            .background(Color("bgclr"))
     }
     
     func fields() -> some View {

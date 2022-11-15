@@ -14,7 +14,8 @@ struct SettingView: View {
     @State private var moveToPreferences = false
     @State private var moveToEditProfile = false
     @State private var moveToChangePassword = false
-    @State private var moveToGoals = false
+    @State private var moveToDailyGoals = false
+    @State private var moveToWeeklyGoals = false
     
     let settingMenuList = [SettingModel(title: "Profile Settings", subTitle: "Edit and make changes to your profile", image: "profile", type: .profileSetting),
                            SettingModel(title: "Preferences", subTitle: "Edit your food preference & Dislikes", image: "preferences", type: .preferences),
@@ -68,7 +69,8 @@ extension SettingView {
             NavigationLink("", destination: HideNavbarOf(view: ChangePreferenceView()) , isActive: $moveToPreferences)
             NavigationLink("", destination: HideNavbarOf(view: EditProfileView()), isActive: $moveToEditProfile)
             NavigationLink("", destination: HideNavbarOf(view: ChangePasswordView()), isActive: $moveToChangePassword)
-            NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView()), isActive: $moveToGoals)
+            NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView(type: DAILY)), isActive: $moveToDailyGoals)
+            NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView(type: WEEKLY)), isActive: $moveToWeeklyGoals)
         }
         .hidden()
         .frame(height: 0)
@@ -89,9 +91,9 @@ extension SettingView {
         case .changePassword:
             moveToChangePassword = true
         case .dailyGoal:
-            moveToGoals = true
+            moveToDailyGoals = true
         case .weeklyGoal:
-            moveToGoals = true
+            moveToWeeklyGoals = true
         case .deleteAccount:
             deleteAccount()
         }

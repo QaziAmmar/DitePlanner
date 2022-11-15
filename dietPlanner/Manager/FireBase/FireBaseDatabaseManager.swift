@@ -29,7 +29,6 @@ final class FirebaseDatabaseManager {
     public static let shared = FirebaseDatabaseManager()
     
     // get current user
-    let userID = UserDefaultManager.shared.userId
     let database = Database.database().reference()
     
     
@@ -112,6 +111,11 @@ extension FirebaseDatabaseManager {
                 let user = try JSONDecoder().decode(User.self, from: jsonData)
                 
                 UserDefaultManager.shared.set(user: user)
+                
+                // read user's goals and update into usersDefaults.
+                GoalViewModel().readGoals(type: DAILY)
+                GoalViewModel().readGoals(type: WEEKLY)
+                
                 completion(true, "user login successfully")
                 
             } catch let error {
@@ -134,7 +138,7 @@ extension FirebaseDatabaseManager {
     }
 }
 
-
+/// This will create some table in firebase database for newly created person
 // MARK: Auto Firebase Table Generation
 
 extension FirebaseDatabaseManager {
@@ -150,9 +154,12 @@ extension FirebaseDatabaseManager {
         for dislike in dislikeFoodArray {
             create_dislike_food(with: dislike, firebaseID: fireBaseId)
         }
+        
+        // create goal table
+//        createDailyAndWeeklyGoal(fireBaseId: fireBaseId)
     }
     
-    public func create_dite_preference(with dietPreference: DitePreferenceModel, firebaseID: String) {
+     func create_dite_preference(with dietPreference: DitePreferenceModel, firebaseID: String) {
         
         database.child(FireBaseTable.dite_preferences.rawValue).child(firebaseID).childByAutoId().setValue(dietPreference.convertToDictionary!, withCompletionBlock: { error, _ in
             
@@ -162,7 +169,7 @@ extension FirebaseDatabaseManager {
         })
     }
     
-    public func create_dislike_food(with dislikeFood: DislikeFoodModel, firebaseID: String) {
+     func create_dislike_food(with dislikeFood: DislikeFoodModel, firebaseID: String) {
         
         database.child(FireBaseTable.dislike_food.rawValue).child(firebaseID).childByAutoId().setValue(dislikeFood.convertToDictionary!, withCompletionBlock: { error, _ in
             
@@ -171,6 +178,30 @@ extension FirebaseDatabaseManager {
             }
         })
     }
+    
+    /// This function will create the daily and weekly goald table for the new created user.
+    func createDailyAndWeeklyGoal(fireBaseId: String) {
+        
+        print("Create Daily and Weekly Goal Table")
+        let userID = UserDefaultManager.shared.userId
+        // create daily goal
+        database.child(FireBaseTable.goals.rawValue).child(userID).child(DAILY).setValue(Goals().convertToDictionary!, withCompletionBlock: { error, _ in
+            
+            guard error == nil else {
+                return
+            }
+        })
+        
+        // create weekly goal table
+        database.child(FireBaseTable.goals.rawValue).child(userID).child(WEEKLY).setValue(Goals().convertToDictionary!, withCompletionBlock: { error, _ in
+            
+            guard error == nil else {
+                return
+            }
+        })
+    }
+    
+    
 }
 
 
@@ -181,6 +212,7 @@ extension FirebaseDatabaseManager {
     public func insertRecipe(with recipe: RecipeModel, completion: @escaping (Bool, String) -> Void) {
         
         SwiftSpinner.show("Loading...")
+        let userID = UserDefaultManager.shared.userId
         
         database.child(FireBaseTable.recipes.rawValue).child(userID).childByAutoId().setValue(recipe.convertToDictionary!, withCompletionBlock: { error, ref in
             

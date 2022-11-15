@@ -23,9 +23,6 @@ struct ShoppingCategoryListView: View {
     
     var body: some View {
         loadView()
-            .background(
-                hiddenNavigationLinks
-            )
     }
 }
 
@@ -42,17 +39,7 @@ extension ShoppingCategoryListView {
                 shoppingList()
                 
             }.padding()
-                .background(Color("bgclr"))
-            
-            // sidemenu view
-            ZStack {
-                SideMenu(width: 300,
-                         isOpen: self.menuOpen,
-                         menuClose: self.openMenu,
-                         onClick: { selectedView in
-                    self.performNavigation(at: selectedView)
-                })
-            }
+       
         }
     }
     
@@ -61,19 +48,7 @@ extension ShoppingCategoryListView {
     func navBarView() -> some View {
         ZStack{
             HStack{
-                
-                if !self.menuOpen {
-                    Button(action: {
-                        self.openMenu()
-                    },
-                           label: {
-                        
-                        Image("Drawer")
-                            .resizable()
-                            .frame(width: 24.0, height: 24.0)
-                    })
-                    
-                }
+
                 Spacer()
                 
             }
@@ -108,43 +83,6 @@ extension ShoppingCategoryListView {
 }
 
 
-
-// MARK: Custom Function extension
-extension ShoppingCategoryListView {
-    
-    // function to open/close menu
-    func openMenu() {
-        self.menuOpen.toggle()
-    }
-    
-    func performNavigation(at view: NavViews) {
-        self.menuOpen.toggle()
-        switch view {
-        case .preferences:
-            moveToPreferences = true
-        case .edit_profile:
-            moveToEditProfile = true
-        case .change_password:
-            moveToChangePassword = true
-        case .logout:
-            UserDefaultManager.shared.logout()
-        case .goals:
-            moveToGoals = true
-        }
-    }
-    
-    var hiddenNavigationLinks: some View {
-        
-        ZStack() {
-            NavigationLink("", destination: HideNavbarOf(view: ChangePreferenceView()) , isActive: $moveToPreferences)
-            NavigationLink("", destination: HideNavbarOf(view: EditProfileView()), isActive: $moveToEditProfile)
-            NavigationLink("", destination: HideNavbarOf(view: ChangePasswordView()), isActive: $moveToChangePassword)
-            NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView()), isActive: $moveToGoals)
-        }
-        .hidden()
-        .frame(height: 0)
-    }
-}
 
 
 struct ShoppingListView_Previews: PreviewProvider {

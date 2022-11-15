@@ -120,7 +120,7 @@ enum FireBaseTable: String {
     case mealPlanner = "meal_planner"
     case weekly_meal_plan = "weekly_meal_plan"
     case start_date_of_week = "start_date_of_week"
-    
+    case goals = "goals"
 }
 
 

@@ -20,6 +20,9 @@ enum UserDefaultEnum: String {
     case todoList
     case walkThrough
     case startDateOfWeek
+    // goals
+    case dailyGoal
+    case weeklyGoal
 }
 
 
@@ -31,7 +34,7 @@ class UserDefaultManager {
     // this will return the empty stirng if no value is founded into UserDefaults.
     var userId: String {
         // this is an testing id for user
-        return UserDefaultManager.shared.getUser()?.firebaseID ?? "UfJI7ZLWggNKYWSZUafkpPmxjpy1"
+        return UserDefaultManager.shared.getUser()?.firebaseID ?? "No_id_Founded"
     }
     // this will return the empty stirng if no value is founded into UserDefaults.
     var userName: String {
@@ -86,6 +89,8 @@ class UserDefaultManager {
         return nil
     }
     
+    
+    
     /// Update username and save the new value into userDefaults
     func update(name: String) {
         var user = self.getUser()
@@ -103,6 +108,12 @@ class UserDefaultManager {
     func removeUser() {
         GIDSignIn.sharedInstance.signOut()
         userDefaults.removeObject(forKey: UserDefaultEnum.userModel.rawValue)
+        // these are user daily and weekly goals
+        userDefaults.removeObject(forKey: DAILY)
+        userDefaults.removeObject(forKey: WEEKLY)
+        // Delete user start date of the current week.
+        userDefaults.removeObject(forKey: UserDefaultEnum.startDateOfWeek.rawValue)
+        userDefaults.removeObject(forKey: UserDefaultEnum.startDateOfWeek.rawValue)
         UserDefaultManager.Authenticated.send(false)
     }
     
@@ -114,62 +125,47 @@ class UserDefaultManager {
     func isWalkThrougViewed() -> Bool {
         return userDefaults.bool(forKey: UserDefaultEnum.walkThrough.rawValue)
     }
-    
-    /// End Walk Through Section
-    
-    // these function will use to handle scenarois for weekly meal plane
+
+    //
+    // these user defaults save the date from where you week is started. then use this
+    //    date as referce to automatically generate the weekly meal plan.
     func setStartDateOfWeek(date: Date) {
         userDefaults.set(date, forKey: UserDefaultEnum.startDateOfWeek.rawValue)
     }
     func getStartDateOfWeek() -> Date? {
         return userDefaults.value(forKey: UserDefaultEnum.startDateOfWeek.rawValue) as? Date
     }
-    // end of function, that will use to handle scenarois for weekly meal plane
     
-    func isNewDateStarted_DailyCheckList() -> (Bool, Int) {
-        
-        // here we can use dummy dates to check either our accomplishments are increasing day by day or not.
-        let old_day = userDefaults.value(forKey: UserDefaultEnum.dayilyCheckList.rawValue) as? Int
-        let current_day = DateManager.standard.getDayOfTheYear()
-        
-        
-        // for first time login
-        if old_day == nil {
-            userDefaults.set(current_day, forKey: UserDefaultEnum.dayilyCheckList.rawValue)
-            return (false, 0)
-        }
-        // find the difference between date
-        let difference = current_day - old_day!
-        
-        if current_day == old_day {
-            return (false, difference)
-        } else {
-            userDefaults.set(current_day, forKey: UserDefaultEnum.dayilyCheckList.rawValue)
-            return (true, difference)
-        }
-            
-    }
-    
-    
-    func isNewDateStarted_ToDoList() -> Bool {
-        
-        let old_day = userDefaults.value(forKey: UserDefaultEnum.todoList.rawValue) as? Int
-        let current_day = DateManager.standard.getDayOfTheYear()
-        
-        // for first time login
-        if old_day == nil {
-            userDefaults.set(current_day, forKey: UserDefaultEnum.todoList.rawValue)
-            return false
-        }
-        
-        if current_day == old_day {
-            return false
-        } else {
-            userDefaults.set(current_day, forKey: UserDefaultEnum.todoList.rawValue)
-            return true
-        }
-            
-    }
 
+}
+
+
+//  MARK: Goals Extension
+extension UserDefaultManager {
+    
+    /// save user Daily goals
+    func setGoal(goal: Goals, type: String) {
+        // save complete userModel object into user Default.
+        // structures cannot save into userDefaults so we need to convert them into
+        // data before saving into usersDefaults.
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(goal) {
+            userDefaults.set(encoded, forKey: type)
+        }
+    }
+    
+    /// get the whole userObject form userDefaults.
+    func getGoal(type: String) -> Goals {
+   
+        if let userData: Data =  userDefaults.object(forKey: type) as? Data {
+            let decoder = JSONDecoder()
+            if let goal = try? decoder.decode(Goals.self, from: userData) {
+                return goal
+            }
+            print("Goal Decoder Error")
+        }
+        print("No Goal Found in UsersDefaults")
+        return Goals()
+    }
 }
 

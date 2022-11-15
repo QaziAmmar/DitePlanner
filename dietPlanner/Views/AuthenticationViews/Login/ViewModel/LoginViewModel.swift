@@ -73,6 +73,7 @@ class LoginViewModel: ObservableObject {
             } else {
                 // this is a broadcast message which chagen your root
                 print("change root of the application")
+                
                 UserDefaultManager.Authenticated.send(true)
             }
             SwiftSpinner.hide()

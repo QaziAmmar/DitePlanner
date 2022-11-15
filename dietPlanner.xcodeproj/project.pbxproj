@@ -148,6 +148,10 @@
 		7A45F6762913AA6A00EFCDFE /* MealDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A45F6752913AA6A00EFCDFE /* MealDetailView.swift */; };
 		7A4C35B9290FAC1700423B33 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4C35B8290FAC1700423B33 /* SettingView.swift */; };
 		7A4C35BB290FB6F700423B33 /* FoodNutrientsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4C35BA290FB6F700423B33 /* FoodNutrientsTextField.swift */; };
+		7A4C6AC029237E6A00996CA9 /* SetCaloriesGoals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4C6ABF29237E6A00996CA9 /* SetCaloriesGoals.swift */; };
+		7A4C6AC32923810500996CA9 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = 7A4C6AC22923810500996CA9 /* Sliders */; };
+		7A4C6AC529238BB600996CA9 /* GoalSliderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4C6AC429238BB600996CA9 /* GoalSliderRow.swift */; };
+		7A4C6AC8292392FA00996CA9 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4C6AC7292392FA00996CA9 /* GoalViewModel.swift */; };
 		7A59CEF22914001B0092D75E /* MyRecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A59CEF12914001B0092D75E /* MyRecipeCard.swift */; };
 		7A66C7CD2914FB7400FEB6E6 /* MenuSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A66C7CC2914FB7400FEB6E6 /* MenuSelection.swift */; };
 		7A895B5D29151B7000AC06A3 /* MealRecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A895B5C29151B7000AC06A3 /* MealRecommendationViewModel.swift */; };
@@ -315,6 +319,9 @@
 		7A45F6752913AA6A00EFCDFE /* MealDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailView.swift; sourceTree = "<group>"; };
 		7A4C35B8290FAC1700423B33 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7A4C35BA290FB6F700423B33 /* FoodNutrientsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodNutrientsTextField.swift; sourceTree = "<group>"; };
+		7A4C6ABF29237E6A00996CA9 /* SetCaloriesGoals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCaloriesGoals.swift; sourceTree = "<group>"; };
+		7A4C6AC429238BB600996CA9 /* GoalSliderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSliderRow.swift; sourceTree = "<group>"; };
+		7A4C6AC7292392FA00996CA9 /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
 		7A59CEF12914001B0092D75E /* MyRecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipeCard.swift; sourceTree = "<group>"; };
 		7A66C7CC2914FB7400FEB6E6 /* MenuSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSelection.swift; sourceTree = "<group>"; };
 		7A895B5C29151B7000AC06A3 /* MealRecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRecommendationViewModel.swift; sourceTree = "<group>"; };
@@ -353,6 +360,7 @@
 				4AB7B71E28E1C31A0068E882 /* SwiftPieChart in Frameworks */,
 				4A03F89228EC70CF003FAC1D /* FirebaseAuth in Frameworks */,
 				7AF751EA28FECD5800D24D42 /* SDWebImageSwiftUI in Frameworks */,
+				7A4C6AC32923810500996CA9 /* Sliders in Frameworks */,
 				7A3576B929028657005DF38F /* SwiftSpinner in Frameworks */,
 				4A4C82FF28FD2965000C1EF4 /* FirebaseStorage in Frameworks */,
 				4A03F90428F00E58003FAC1D /* FirebaseDatabase in Frameworks */,
@@ -496,7 +504,10 @@
 		4AB7B72328E1E1A50068E882 /* CalorieMacroGoals */ = {
 			isa = PBXGroup;
 			children = (
+				7A4C6AC6292392E200996CA9 /* ViewModel */,
 				7AAA0938290BA08000F969F4 /* CalorieGoalView.swift */,
+				7A4C6ABF29237E6A00996CA9 /* SetCaloriesGoals.swift */,
+				7A4C6AC429238BB600996CA9 /* GoalSliderRow.swift */,
 			);
 			path = CalorieMacroGoals;
 			sourceTree = "<group>";
@@ -1021,6 +1032,14 @@
 			path = SettingView;
 			sourceTree = "<group>";
 		};
+		7A4C6AC6292392E200996CA9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7A4C6AC7292392FA00996CA9 /* GoalViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7A66C7CB2914FB5C00FEB6E6 /* MenuSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -1301,6 +1320,7 @@
 				7AF751E928FECD5800D24D42 /* SDWebImageSwiftUI */,
 				7A3576B829028657005DF38F /* SwiftSpinner */,
 				7AD511902909907000DF2CD7 /* CodableFirebase */,
+				7A4C6AC22923810500996CA9 /* Sliders */,
 			);
 			productName = dietPlanner;
 			productReference = 4A95BE8428D2F8640018085A /* dietPlanner.app */;
@@ -1338,6 +1358,7 @@
 				7AF751E328FECA3500D24D42 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				7AF751E828FECD5800D24D42 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				7A3576B729028656005DF38F /* XCRemoteSwiftPackageReference "SwiftSpinner" */,
+				7A4C6AC12923810500996CA9 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 			);
 			productRefGroup = 4A95BE8528D2F8640018085A /* Products */;
 			projectDirPath = "";
@@ -1398,6 +1419,7 @@
 				7A3576AD29028379005DF38F /* AppleSignInButton.swift in Sources */,
 				7A3576B329028379005DF38F /* SlidingTabView.swift in Sources */,
 				7AAA0927290A80D200F969F4 /* ChoseDislikeFood.swift in Sources */,
+				7A4C6AC8292392FA00996CA9 /* GoalViewModel.swift in Sources */,
 				7A3576A429028379005DF38F /* NavBar.swift in Sources */,
 				4AB9D07928DB2C70009E67E0 /* CustomView.swift in Sources */,
 				4AB9D07B28DC2FF8009E67E0 /* AddBreakFastView.swift in Sources */,
@@ -1453,6 +1475,7 @@
 				4AABCC4F28D33DDC00335C10 /* SignUp.swift in Sources */,
 				4A03F90828F024E9003FAC1D /* DataManager.swift in Sources */,
 				7A314B172909857900482082 /* PreferenceViewModel.swift in Sources */,
+				7A4C6AC529238BB600996CA9 /* GoalSliderRow.swift in Sources */,
 				7AAA092E290A838300F969F4 /* FoodDislikeItem.swift in Sources */,
 				7A3576892902835D005DF38F /* TabViewsContainer.swift in Sources */,
 				4AB9D06F28DB19E9009E67E0 /* AYHorindarDataSource.swift in Sources */,
@@ -1461,6 +1484,7 @@
 				7A1BE8E3290BD14A0056A971 /* AddShoppingItem.swift in Sources */,
 				7A35766E290189FF005DF38F /* DateManager.swift in Sources */,
 				7A2FC427291D04DB00580699 /* SettingRow.swift in Sources */,
+				7A4C6AC029237E6A00996CA9 /* SetCaloriesGoals.swift in Sources */,
 				7A357672290189FF005DF38F /* Validator.swift in Sources */,
 				7A45F66C291392CE00EFCDFE /* CircularCreateNewBtn.swift in Sources */,
 				7A357666290189FF005DF38F /* String.swift in Sources */,
@@ -1651,7 +1675,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"dietPlanner/Preview Content\"";
-				DEVELOPMENT_TEAM = 876UF39PZ6;
+				DEVELOPMENT_TEAM = P53L5YSN9N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dietPlanner/Info.plist;
@@ -1666,7 +1690,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ml.dietPlanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mlb.dietPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1685,7 +1709,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"dietPlanner/Preview Content\"";
-				DEVELOPMENT_TEAM = 876UF39PZ6;
+				DEVELOPMENT_TEAM = P53L5YSN9N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dietPlanner/Info.plist;
@@ -1700,7 +1724,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ml.dietPlanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mlb.dietPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1775,6 +1799,14 @@
 				kind = branch;
 			};
 		};
+		7A4C6AC12923810500996CA9 /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		7AF751E328FECA3500D24D42 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -1828,6 +1860,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7A3576B729028656005DF38F /* XCRemoteSwiftPackageReference "SwiftSpinner" */;
 			productName = SwiftSpinner;
+		};
+		7A4C6AC22923810500996CA9 /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A4C6AC12923810500996CA9 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
 		};
 		7AD511902909907000DF2CD7 /* CodableFirebase */ = {
 			isa = XCSwiftPackageProductDependency;

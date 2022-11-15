@@ -89,7 +89,7 @@ struct QuickAddView: View {
         }
         }
     }.padding()
-        .background(Color("bgclr"))
+        
 }
 }
 
@@ -138,7 +138,7 @@ extension QuickAddView {
             RoundedRectangle(cornerRadius: 5)
                 .stroke( .gray, lineWidth: 0.5)
               .frame(height: 56)
-              .background(Color("bgclr"))
+              
             
             HStack {
                 Text(name)
@@ -150,7 +150,7 @@ extension QuickAddView {
                     .font(.custom(Nunito.Semibold.rawValue, size: 20))
             }.padding()
                 
-        }.background(Color("bgclr"))
+        }
     }
 }
 

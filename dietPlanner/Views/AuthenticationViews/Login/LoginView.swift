@@ -66,7 +66,7 @@ extension LoginView {
                 
                 
             }
-        }.background(Color("bgclr"))
+        }
             .edgesIgnoringSafeArea(.top)
     }
 

@@ -19,6 +19,11 @@ class DailyMealListViewModel: ObservableObject {
 
     
     @Published var mealArray = [RecipeModel]()
+    
+    @Published var fat: Double = 0
+    @Published var protein: Double = 0
+    @Published var carbohydrates: Double = 0
+    @Published var calories: Double = 0
  
     
     // Firebase Variable
@@ -48,6 +53,11 @@ extension DailyMealListViewModel {
     
     
     func fetchMealBy(date: Date, mealCategory: String) {
+        // these variables are use to show the total of the current calories
+        self.fat = 0
+        self.calories = 0
+        self.carbohydrates = 0
+        self.protein = 0
 
         let strDate = DateManager.standard.getCurrentString(from: date)
         
@@ -62,6 +72,12 @@ extension DailyMealListViewModel {
                 do {
                     var recipe =  try snapshot.data(as: RecipeModel.self)
                     recipe.id = snapshot.ref.key
+                    
+                    self.fat = self.fat + (Double(recipe.fat) ?? 0)
+                    self.calories = self.calories + (Double(recipe.calories) ?? 0)
+                    self.carbohydrates = self.carbohydrates + (Double(recipe.carbohydrates) ?? 0)
+                    self.protein = self.protein + (Double(recipe.protenis) ?? 0)
+                    
                     return recipe
                 } catch {
                     print(error)

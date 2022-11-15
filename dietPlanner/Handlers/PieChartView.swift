@@ -47,6 +47,7 @@ struct PieChartView: View {
                             .foregroundColor(Color.gray)
                         Text(String(values.reduce(0, +)))
                             .font(.title)
+                            .foregroundColor(Color.black.opacity(0.7))
                     }
                 }
                 PieChartRows(colors: self.colors, names: self.names, values: self.values.map { String($0) }, percents: self.values.map { String(format: "%.0f%%", $0 * 100 / self.values.reduce(0, +)) })
@@ -71,6 +72,7 @@ struct PieChartRows: View {
                         .fill(self.colors[i])
                         .frame(width: 20, height: 20)
                     Text(self.names[i])
+                        .foregroundColor(.black)
                     Spacer()
                     VStack(alignment: .trailing) {
                         Text(self.values[i])

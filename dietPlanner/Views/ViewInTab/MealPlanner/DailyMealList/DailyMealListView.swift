@@ -11,9 +11,11 @@ struct DailyMealListView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var date = Date()
-    var title: String
     @StateObject var vm = DailyMealListViewModel()
 
+    var title: String
+    var dailyGoal = UserDefaultManager.shared.getGoal(type: DAILY)
+    
 
     var body: some View {
         loadView()
@@ -139,19 +141,19 @@ extension DailyMealListView {
             }
             HStack {
                 Spacer()
-                percentageView(nutration_name: "Calories", nutrationAmount: "752")
+                percentageView(nutration_name: "Calories", nutrationAmount: vm.calories)
                 Spacer()
-                percentageView(nutration_name: "Fats", nutrationAmount: "571")
+                percentageView(nutration_name: "Fats", nutrationAmount: vm.fat)
                 Spacer()
-                percentageView(nutration_name: "Protenis", nutrationAmount: "10")
+                percentageView(nutration_name: "Protenis", nutrationAmount: vm.protein)
                 Spacer()
-                percentageView(nutration_name: "Carbo", nutrationAmount: "59")
+                percentageView(nutration_name: "Carbo", nutrationAmount: vm.carbohydrates)
                 Spacer()
             }
         }
     }
     
-    func percentageView(nutration_name: String, nutrationAmount: String) -> some View {
+    func percentageView(nutration_name: String, nutrationAmount: Double) -> some View {
         
         HStack {
             ZStack{
@@ -162,13 +164,12 @@ extension DailyMealListView {
                 
                 Circle()
                     .rotation(Angle(degrees: 270))
-                    .trim(from: 0, to: 0.5)
+                    .trim(from: 0, to: CGFloat(getMealPercentage(name: nutration_name, value: nutrationAmount)))
                     .stroke(Color(ColorName.appGreen.rawValue), lineWidth: 2)
                     .frame(width: 75, height: 75)
                 
                 VStack(spacing: 0) {
-                    Text(nutrationAmount)
-                    
+                    Text(String(Int(nutrationAmount)))
                     HStack {
                         Text(nutration_name)
                             .font(Font.custom(Nunito.Medium.rawValue, size: 8))
@@ -183,6 +184,31 @@ extension DailyMealListView {
     }
 }
 
+//MARK: Custom Function Extension {
+extension DailyMealListView {
+    
+    func getMealPercentage(name: String, value: Double) -> Double {
+        
+        var returnValue: Double = 0.0
+        
+        if name == "Carbo" {
+            returnValue = dailyGoal.carbohydrates
+        } else if name == "Protenis" {
+            returnValue = dailyGoal.protein
+        }else if name == "Calories" {
+            returnValue = dailyGoal.calories
+        }else {
+            returnValue = dailyGoal.fats
+        }
+        
+        returnValue = value / (returnValue * 5000)
+        if returnValue.isNaN  || returnValue.isInfinite{
+            return 0
+        }
+        return returnValue
+    }
+    
+}
 
 
 struct MealSelectorView_Previews: PreviewProvider {

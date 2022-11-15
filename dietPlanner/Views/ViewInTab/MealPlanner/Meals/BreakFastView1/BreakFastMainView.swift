@@ -21,7 +21,7 @@ struct BreakFastMainView: View {
             MyCalendarY(onDatePicked: { date in
                 print(date)
             }).frame( height: 80)
-                .background(Color("bgclr"))
+                
             ScrollView(showsIndicators: false){
                 VStack(alignment: .leading){
             Text("Breakfast")
@@ -44,7 +44,6 @@ struct BreakFastMainView: View {
         }
             
         }.padding()
-            .background(Color("bgclr"))
     }
 }
 

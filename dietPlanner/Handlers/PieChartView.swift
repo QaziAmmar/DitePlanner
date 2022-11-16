@@ -45,9 +45,11 @@ struct PieChartView: View {
                         Text("Total")
                             .font(.title)
                             .foregroundColor(Color.gray)
-                        Text(String(values.reduce(0, +)))
+                        Text(String(values.reduce(0, +) * 100))
                             .font(.title)
                             .foregroundColor(Color.black.opacity(0.7))
+                            .frame(width: 100)
+                            .lineLimit(1)
                     }
                 }
                 PieChartRows(colors: self.colors, names: self.names, values: self.values.map { String($0) }, percents: self.values.map { String(format: "%.0f%%", $0 * 100 / self.values.reduce(0, +)) })

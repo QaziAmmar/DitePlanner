@@ -17,6 +17,9 @@ struct SettingView: View {
     @State private var moveToDailyGoals = false
     @State private var moveToWeeklyGoals = false
     
+    @StateObject var vm = SettingViewModel()
+    @State private var showAlert = false
+    
     let settingMenuList = [SettingModel(title: "Profile Settings", subTitle: "Edit and make changes to your profile", image: "profile", type: .profileSetting),
                            SettingModel(title: "Preferences", subTitle: "Edit your food preference & Dislikes", image: "preferences", type: .preferences),
                            SettingModel(title: "Change Password", subTitle: "Change your password here", image: "changePassword", type: .changePassword),
@@ -26,6 +29,14 @@ struct SettingView: View {
     
     var body: some View {
         loadView()
+            .alert(isPresented: $vm.showError) {
+                Alert(title: Text(vm.errorMessage))       
+            }
+            .alert("Are you sure to delete", isPresented: $showAlert) {
+                Button("Yes", role: .destructive) {
+                    vm.removeUser()
+                }
+            }
     }
 }
 
@@ -100,7 +111,7 @@ extension SettingView {
     }
     
     func deleteAccount()  {
-        print("delete my account")
+        showAlert.toggle()
     }
     
 }

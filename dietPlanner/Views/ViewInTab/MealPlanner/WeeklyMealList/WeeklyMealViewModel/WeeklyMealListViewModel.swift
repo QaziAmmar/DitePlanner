@@ -21,6 +21,12 @@ class WeeklyMealListViewModel: ObservableObject {
     @Published var mealArray = [RecipeModel]()
     @Published var dayOfWeek = "Sun"
  
+    // percentage View
+    @Published var fat: Double = 0
+    @Published var protein: Double = 0
+    @Published var carbohydrates: Double = 0
+    @Published var calories: Double = 0
+    
     
     // Firebase Variable
     private let recipes = FireBaseTable.recipes.rawValue
@@ -63,6 +69,12 @@ extension WeeklyMealListViewModel {
                 do {
                     var recipe =  try snapshot.data(as: RecipeModel.self)
                     recipe.id = snapshot.ref.key
+                    
+                    self.fat = self.fat + (Double(recipe.fat) ?? 0)
+                    self.calories = self.calories + (Double(recipe.calories) ?? 0)
+                    self.carbohydrates = self.carbohydrates + (Double(recipe.carbohydrates) ?? 0)
+                    self.protein = self.protein + (Double(recipe.protenis) ?? 0)
+                    
                     return recipe
                 } catch {
                     print(error)

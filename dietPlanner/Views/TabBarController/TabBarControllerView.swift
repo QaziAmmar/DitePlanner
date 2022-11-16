@@ -12,64 +12,67 @@ struct TabBarControllerView: View {
     @State private var tabSelection = 0
 
     init() {
-//        UITabBar.appearance().backgroundColor = UIColor(named: ColorName.appMainLight.rawValue)
+
         UITabBar.appearance().unselectedItemTintColor = .gray
     }
     
     var body: some View {
-        TabView(selection: $tabSelection) {
-            
-            TabViewsContainer(view: HomeView())
-                .tabItem {
-                    VStack {
-                        Image(ImageName.meal.rawValue)
-                            .renderingMode(.template)
-                        Text("Meal Planner")
+        
+        NavigationView {
+            TabView(selection: $tabSelection) {
+                
+                HomeView()
+                    .tabItem {
+                        VStack {
+                            Image(ImageName.meal.rawValue)
+                                .renderingMode(.template)
+                            Text("Meal Planner")
+                        }
+                        
                     }
-                    
-                }
-                .tag(0)
-            
-            TabViewsContainer(view: ShoppingCategoryListView())
-            
-                .tabItem {
-                    
-                    VStack {
-                        Image(systemName: "cart.fill")
-                            .renderingMode(.template)
-                        Text("Shopping List")
+                    .tag(0)
+                
+                
+                ShoppingCategoryListView()
+                    .tabItem {
+                        
+                        VStack {
+                            Image(systemName: "cart.fill")
+                                .renderingMode(.template)
+                            Text("Shopping List")
+                        }
+
                     }
+                    .tag(1)
+                
+                
 
-                }
-                .tag(1)
-            
-            
-            TabViewsContainer(view: RecipeMainView())
-                .tabItem {
-                    VStack {
-                        Image(ImageName.cook.rawValue)
-                            .renderingMode(.template)
-                        Text("Recipes")
+                RecipeMainView()
+                    .tabItem {
+                        VStack {
+                            Image(ImageName.cook.rawValue)
+                                .renderingMode(.template)
+                            Text("Recipes")
+                        }
+
                     }
+                    .tag(2)
+                
 
-                }
-                .tag(2)
-            
-            
-            
-            TabViewsContainer(view: SettingView())
-                .tabItem {
-                    VStack {
-                        Image(systemName: "ellipsis")
-                            .renderingMode(.template)
-                        Text("More")
+                SettingView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "ellipsis")
+                                .renderingMode(.template)
+                            Text("More")
+                        }
+
                     }
+                    .tag(3)
 
-                }
-                .tag(3)
-
+            }
+            .accentColor(Color(ColorName.appGreen.rawValue))
         }
-        .accentColor(Color(ColorName.appGreen.rawValue))
     }
 }
 

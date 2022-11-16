@@ -122,7 +122,6 @@
 		7A3576862902835D005DF38F /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35767F2902835D005DF38F /* SideMenuView.swift */; };
 		7A3576872902835D005DF38F /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3576802902835D005DF38F /* SideMenu.swift */; };
 		7A3576882902835D005DF38F /* TabBarControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3576822902835D005DF38F /* TabBarControllerView.swift */; };
-		7A3576892902835D005DF38F /* TabViewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3576832902835D005DF38F /* TabViewsContainer.swift */; };
 		7A3576A429028379005DF38F /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35768A29028377005DF38F /* NavBar.swift */; };
 		7A3576A629028379005DF38F /* CreateNewBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35768D29028377005DF38F /* CreateNewBtn.swift */; };
 		7A3576A729028379005DF38F /* GreenBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35768E29028377005DF38F /* GreenBtn.swift */; };
@@ -165,6 +164,7 @@
 		7AACF8AC290FDD3200217077 /* ActiveMealRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AACF8AB290FDD3200217077 /* ActiveMealRow.swift */; };
 		7AACF8B129100F2700217077 /* MealPlannerItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AACF8B029100F2700217077 /* MealPlannerItemRow.swift */; };
 		7AAD22802908087200C478D1 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAD227F2908087200C478D1 /* RecipeViewModel.swift */; };
+		7AC2EBFC2924CD28002BFD4D /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC2EBFB2924CD28002BFD4D /* SettingViewModel.swift */; };
 		7AC6EAE22906D1BB00F370DF /* HorizontalTabSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6EAE12906D1BB00F370DF /* HorizontalTabSelection.swift */; };
 		7AD032F42907B02A008587A3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD032F32907B02A008587A3 /* HomeViewModel.swift */; };
 		7AD032F92907C9BD008587A3 /* MealCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD032F82907C9BD008587A3 /* MealCategoryViewModel.swift */; };
@@ -294,7 +294,6 @@
 		7A35767F2902835D005DF38F /* SideMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		7A3576802902835D005DF38F /* SideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		7A3576822902835D005DF38F /* TabBarControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerView.swift; sourceTree = "<group>"; };
-		7A3576832902835D005DF38F /* TabViewsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewsContainer.swift; sourceTree = "<group>"; };
 		7A35768A29028377005DF38F /* NavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		7A35768D29028377005DF38F /* CreateNewBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewBtn.swift; sourceTree = "<group>"; };
 		7A35768E29028377005DF38F /* GreenBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreenBtn.swift; sourceTree = "<group>"; };
@@ -335,6 +334,7 @@
 		7AACF8AB290FDD3200217077 /* ActiveMealRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveMealRow.swift; sourceTree = "<group>"; };
 		7AACF8B029100F2700217077 /* MealPlannerItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlannerItemRow.swift; sourceTree = "<group>"; };
 		7AAD227F2908087200C478D1 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
+		7AC2EBFB2924CD28002BFD4D /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		7AC6EAE12906D1BB00F370DF /* HorizontalTabSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalTabSelection.swift; sourceTree = "<group>"; };
 		7AD032F32907B02A008587A3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7AD032F82907C9BD008587A3 /* MealCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCategoryViewModel.swift; sourceTree = "<group>"; };
@@ -918,7 +918,6 @@
 			isa = PBXGroup;
 			children = (
 				7A3576822902835D005DF38F /* TabBarControllerView.swift */,
-				7A3576832902835D005DF38F /* TabViewsContainer.swift */,
 			);
 			path = TabBarController;
 			sourceTree = "<group>";
@@ -1026,6 +1025,7 @@
 		7A4C35B7290FAC0D00423B33 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
+				7AC2EBFA2924CD1A002BFD4D /* ViewModel */,
 				7A4C35B8290FAC1700423B33 /* SettingView.swift */,
 				7A2FC426291D04DB00580699 /* SettingRow.swift */,
 			);
@@ -1170,6 +1170,14 @@
 				7AACF8B029100F2700217077 /* MealPlannerItemRow.swift */,
 			);
 			path = MealItemRow;
+			sourceTree = "<group>";
+		};
+		7AC2EBFA2924CD1A002BFD4D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7AC2EBFB2924CD28002BFD4D /* SettingViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		7AC6EAE02906D19100F370DF /* HorizontalTabSelection */ = {
@@ -1429,6 +1437,7 @@
 				7AF4725A291D45A7007A4007 /* WeeklyMealListViewModel.swift in Sources */,
 				4A03F90E28F0650D003FAC1D /* UserDefalutsObjects.swift in Sources */,
 				7A895B5D29151B7000AC06A3 /* MealRecommendationViewModel.swift in Sources */,
+				7AC2EBFC2924CD28002BFD4D /* SettingViewModel.swift in Sources */,
 				7AAA0929290A81A700F969F4 /* DislikeFoodList.swift in Sources */,
 				7A35766B290189FF005DF38F /* NotificationManager.swift in Sources */,
 				7AAA0934290AA58800F969F4 /* EditProfileViewModel.swift in Sources */,
@@ -1477,7 +1486,6 @@
 				7A314B172909857900482082 /* PreferenceViewModel.swift in Sources */,
 				7A4C6AC529238BB600996CA9 /* GoalSliderRow.swift in Sources */,
 				7AAA092E290A838300F969F4 /* FoodDislikeItem.swift in Sources */,
-				7A3576892902835D005DF38F /* TabViewsContainer.swift in Sources */,
 				4AB9D06F28DB19E9009E67E0 /* AYHorindarDataSource.swift in Sources */,
 				4A95BEAC28D32C7A0018085A /* CustomPasswordField.swift in Sources */,
 				4AB9D07228DB19E9009E67E0 /* AYHorindarViewController.swift in Sources */,
@@ -1679,6 +1687,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dietPlanner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fit Me";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1690,7 +1699,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mlb.dietPlanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ml.dietPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1713,6 +1722,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dietPlanner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fit Me";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1724,7 +1734,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mlb.dietPlanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ml.dietPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

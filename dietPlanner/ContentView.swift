@@ -13,17 +13,23 @@ struct ContentView: View {
     @State var isAuthenticated = UserDefaultManager.IsAuthenticated()
     
     var body: some View {
-
+        
         Group {
             // if isAuthenticated then move to tabBarController
-            isAuthenticated ? AnyView(TabBarControllerView()) : AnyView(HideNavbarOf(view: LoginView()))
+            isAuthenticated ? AnyView(TabBarControllerView()) :
 
+            AnyView(
+                NavigationView {
+                    HideNavbarOf(view: LoginView())
+                }
+            )
+            
         }.onReceive(UserDefaultManager.Authenticated, perform: { newValue in
             isAuthenticated = newValue
         })
-//        .onAppear {
-//            NotificationManger.standard.requestPremission()
-//        }
+        //        .onAppear {
+        //            NotificationManger.standard.requestPremission()
+        //        }
     }
 }
 

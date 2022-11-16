@@ -123,7 +123,7 @@ extension MealDetailView {
                 
                 Circle()
                     .rotation(Angle(degrees: 270))
-                    .trim(from: 0, to: 0.5)
+                    .trim(from: 0, to: 1)
                     .stroke(Color(ColorName.appGreen.rawValue), lineWidth: 2)
                     .frame(width: 75, height: 75)
                 

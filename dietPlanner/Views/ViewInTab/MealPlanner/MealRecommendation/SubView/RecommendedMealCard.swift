@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct RecommendedMealCard: View {
     
-    @Binding var recipe : RecipeModel
+    var recipe : RecipeModel
     
     var body: some View {
         loadView()
@@ -34,13 +34,13 @@ extension RecommendedMealCard {
                 
                 VStack(spacing: 3) {
                     HStack(){
-                        Text("Honey Pancake")
+                        Text(recipe.name)
                             .font(.custom(Nunito.Medium.rawValue, size: 12))
                             .multilineTextAlignment(.leading)
                             .lineLimit(2)
                     }.padding(.top, 5)
                     
-                    Text("Easy | 30 mins")
+                    Text("\(recipe.make_difficulity) | \(recipe.makeTime)")
                         .font(.custom(Nunito.Medium.rawValue, size: 10))
                         .foregroundColor(.gray)
                     
@@ -49,24 +49,17 @@ extension RecommendedMealCard {
                         .foregroundColor(.gray)
                     
                     
-                    NavigationLink {
-                        Text("Current View")
-                    } label: {
-                        Text("View")
-                            .font(.custom(Nunito.Medium.rawValue, size: 12))
-                            .foregroundColor(.white)
-                            .padding(.vertical, 7)
-                            .padding(.horizontal, 30)
-                        
-                    }.background(
+                    Text("View")
+                        .font(.custom(Nunito.Medium.rawValue, size: 12))
+                        .foregroundColor(.white)
+                        .padding(.vertical, 7)
+                        .padding(.horizontal, 30)
+                        .background(
                         LinearGradient(gradient: Gradient(colors: [Color(hex: "9DCEFF"), Color(hex: "92A3FD")]), startPoint: .leading, endPoint: .trailing)
                             .cornerRadius(20)
                         
                     )
-                    .padding(.vertical, 10)
-                    
-                    
-                    
+                    .padding(.vertical, 10)   
                 }
                 .frame(width: 150)
                 .background(
@@ -81,6 +74,6 @@ extension RecommendedMealCard {
 
 struct RecommendedMealCard_Previews: PreviewProvider {
     static var previews: some View {
-        RecommendedMealCard( recipe: .constant(RecipeModel()))
+        RecommendedMealCard( recipe: RecipeModel())
     }
 }

@@ -59,6 +59,15 @@ func randomColorGenerator() -> Color {
     return Color(appColorArray[randomInt])
 }
 
+/// this function will generate the random color each time
+func randomColorGenerator(str: String) -> Color {
+    let digits = str
+        .components(separatedBy:CharacterSet.decimalDigits.inverted)
+        .joined()
+    let randomInt = (Int(digits) ?? 0) % 6
+    return Color(appColorArray[randomInt])
+}
+
 
 
 

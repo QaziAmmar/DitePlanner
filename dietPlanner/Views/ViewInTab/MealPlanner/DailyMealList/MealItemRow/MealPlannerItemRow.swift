@@ -51,7 +51,7 @@ extension MealPlannerItemRow {
                         .background(
                             Circle()
                                 .frame(width: 65, height: 65)
-                                .foregroundColor(randomColorGenerator())
+                                .foregroundColor(randomColorGenerator(str: recipe.id ?? "0"))
                             
                         )
 

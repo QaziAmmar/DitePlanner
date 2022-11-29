@@ -11,6 +11,12 @@ struct MealRecommendationView: View {
     
     @Environment(\.presentationMode) private var presentationMode
     @State private var searchText = ""
+    @State private var moveToBarCodeView = false
+    
+//    These two variablse works togahter
+    @State private var moveMealDetailView = false
+    @State private var transformedRecipeModel = RecipeModel()
+    
     @StateObject var vm = MealRecommendationViewModel()
     
     var title: String
@@ -26,6 +32,11 @@ struct MealRecommendationView: View {
         loadView()
             .onAppear {
                 vm.fetchMyRecipes()
+                vm.fetchOthersRecipes()
+            }
+            .alert(isPresented: $vm.showError) {
+                Alert(title: Text(vm.errorMessage))
+                    
             }
     }
 }
@@ -42,7 +53,10 @@ extension MealRecommendationView {
                 
                 ScrollView {
                     VStack (alignment: .leading){
-                        SearchBar(text: $searchText)
+                        SearchBar(text: $searchText, barcodeAction: {
+                            // move to barcode scan view
+                            moveToBarCodeView.toggle()
+                        })
                             .padding(.top, 5)
                         // MY recipes
                         myRecipes(geometry: geometry)
@@ -53,6 +67,7 @@ extension MealRecommendationView {
                     }
                     
                 }.padding(.horizontal)
+                    .background(hiddenNavigationLinks)
             }
         }
     }
@@ -64,9 +79,17 @@ extension MealRecommendationView {
             Text("My Recipes")
                 .font(.custom(Nunito.Medium.rawValue, size: 16))
             if vm.myRecipes.isEmpty {
-                Text("Loading...")
-                    .font(.custom(Nunito.Medium.rawValue, size: 12))
-                    .foregroundColor(.gray)
+                
+                if vm.noMyRecipesFound {
+                    Text("No Recipe Founded")
+                        .font(.custom(Nunito.Medium.rawValue, size: 12))
+                        .foregroundColor(.gray)
+                } else {
+                    Text("Loading...")
+                        .font(.custom(Nunito.Medium.rawValue, size: 12))
+                        .foregroundColor(.gray)
+                }
+                    
             } else {
                 ScrollView(.horizontal) {
                     HStack(spacing: 10) {
@@ -88,13 +111,40 @@ extension MealRecommendationView {
             Text("Recommendation for Diet")
                 .font(.custom(Nunito.Medium.rawValue, size: 16))
             LazyVGrid (columns: columns,spacing: 20) {
-                //                ForEach($vm.dislike_foods) { dislikeFood in
-                VStack {
-                    RecommendedMealCard(recipe: .constant(RecipeModel()))
+                ForEach(vm.others_Recipes) { recipe in
+                    NavigationLink {
+                        HideNavbarOf(view: MealDetailView(vm: vm, recipe: recipe, title: title, date: date, dayofWeek: dayofWeek))
+                    } label: {
+                        RecommendedMealCard(recipe: recipe)
+                    }
                 }
-                //                }
             }
         }
+    }
+    
+    var hiddenNavigationLinks: some View {
+        
+        ZStack() {
+            NavigationLink("", destination: BarcodeScanView(onProductFound: { productId in
+//                1. call the api to get the product detail form Open Source Fodd API
+                print("start calling \(productId)")
+                vm.callNetworkApi(productId: productId) { recipe in
+                    if let recipe = recipe {
+                        transformedRecipeModel = recipe
+                        moveMealDetailView = true
+                    }
+                }
+                
+            }) , isActive: $moveToBarCodeView)
+            
+            
+//            move to product detail for barcode
+            NavigationLink("", destination: HideNavbarOf(view: BarcodeMealDetailView(vm: vm, recipe: $transformedRecipeModel, title: title, date: date, dayofWeek: dayofWeek)) , isActive: $moveMealDetailView)
+            
+            
+        }
+        .hidden()
+        .frame(height: 0)
     }
     
 }

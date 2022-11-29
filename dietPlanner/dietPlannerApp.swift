@@ -31,6 +31,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             WindowGroup {
                 
                 // Walk Through screen will be seen only once.
+//                TestView()
                 
                     if UserDefaultManager.shared.isWalkThrougViewed() {
                         HideNavbarOf(view: ContentView())

@@ -52,53 +52,5 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D20A04F2-FA99-40E7-9D10-05408564799F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "dietPlanner/Manager/FireBase/FireBaseDatabaseManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "deleteUser(with:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D20A04F2-FA99-40E7-9D10-05408564799F - e8d7768391f06f14"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "dietPlanner.FirebaseDatabaseManager.deleteUser(with: Swift.String, completion: (Swift.Bool, Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "dietPlanner"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qaziammar/Documents/Xcode/dietPlanner/dietPlanner/Manager/FireBase/FireBaseDatabaseManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  uuid = "D20A04F2-FA99-40E7-9D10-05408564799F - fd8f0ca47d050dc1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in dietPlanner.FirebaseDatabaseManager.deleteUser(with: Swift.String, completion: (Swift.Bool, Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "dietPlanner"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qaziammar/Documents/Xcode/dietPlanner/dietPlanner/Manager/FireBase/FireBaseDatabaseManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "132"
-                  endingLineNumber = "132"
-                  offsetFromSymbolStart = "64">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

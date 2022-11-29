@@ -28,16 +28,51 @@ extension DislikeFoodList {
     func loadView() -> some View {
         VStack{
             ScrollView(showsIndicators: false) {
-                
-                LazyVGrid(columns: columns,spacing: 20) {
-                    ForEach($vm.dislike_foods) { dislikeFood in
-                        VStack {
-                            FoodDislikeItem(dislikeFood: dislikeFood, vm: vm)
+                if !vm.dislike_foods.isEmpty {
+
+                    Text("Fruites")
+                        .font(Font.custom(Nunito.Bold.rawValue, size: 22))
+                    
+                    LazyVGrid(columns: columns,spacing: 20) {
+                        ForEach((0..<42)) { index in
+                            VStack {
+                                FoodDislikeItem(dislikeFood: $vm.dislike_foods[index], vm: vm)
+                            }
                         }
                     }
+                    Text("Vegetables")
+                        .font(Font.custom(Nunito.Bold.rawValue, size: 22))
+                   
+                    LazyVGrid(columns: columns,spacing: 20) {
+                        ForEach((42..<80)) { index in
+                            VStack {
+                                FoodDislikeItem(dislikeFood: $vm.dislike_foods[index], vm: vm)
+                            }
+                        }
+                    }
+                    
+                    Text("Meats")
+                        .font(Font.custom(Nunito.Bold.rawValue, size: 22))
+                    
+                    LazyVGrid(columns: columns,spacing: 20) {
+                        ForEach((80..<99)) { index in
+                            VStack {
+                                FoodDislikeItem(dislikeFood: $vm.dislike_foods[index], vm: vm)
+                            }
+                        }
+                    }
+                    
                 }
+                
+//                LazyVGrid(columns: columns,spacing: 20) {
+//                    ForEach($vm.dislike_foods) { dislikeFood in
+//                        VStack {
+//                            FoodDislikeItem(dislikeFood: dislikeFood, vm: vm)
+//                        }
+//                    }
+//                }
             }
-            
+
         }.padding()
     }
 }

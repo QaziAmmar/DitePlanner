@@ -16,6 +16,7 @@ struct RecipeModel: Identifiable, Codable, Hashable {
     var name: String = ""
     var details: String = ""
     var make_difficulity = ""
+    var type = ""
     var makeTime = ""
     
     var userName = ""

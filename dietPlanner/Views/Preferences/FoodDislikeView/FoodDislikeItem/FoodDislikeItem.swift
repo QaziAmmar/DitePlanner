@@ -36,7 +36,7 @@ extension FoodDislikeItem {
                     
                     HStack(alignment: .center) {
                         
-                        Image(dislikeFood.image)
+//                        Image(dislikeFood.image)
                         Text(dislikeFood.name)
                             .foregroundColor(dislikeFood.isSelected ? Color(ColorName.appAqua.rawValue) : .black)
                             .font(.custom("Nunito-Light", size: 16))
@@ -50,6 +50,6 @@ extension FoodDislikeItem {
 
 struct FoodDislikeItem_Previews: PreviewProvider {
     static var previews: some View {
-        FoodDislikeItem(dislikeFood: .constant(DislikeFoodModel(name: "Peanuts", image: "peanut", isSelected: false)), vm: PreferenceViewModel())
+        FoodDislikeItem(dislikeFood: .constant(DislikeFoodModel(name: "Peanuts", isSelected: false)), vm: PreferenceViewModel())
     }
 }

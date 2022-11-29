@@ -16,13 +16,13 @@ struct MLBTextEditor: View {
     @FocusState private var detailIsFocused: Bool
     
     init(title: String, text: Binding<String>, placeholder: String) {
-           UITextView.appearance().backgroundColor = .clear
+        UITextView.appearance().backgroundColor = .clear
         self.title = title
         self.text = text
         self.placeHolder = placeholder
         
-       }
-
+    }
+    
     
     var body: some View {
         VStack(alignment: .leading, spacing: 7) {
@@ -53,15 +53,13 @@ struct MLBTextEditor: View {
                             detailIsFocused = false
                         }
                     }
-                
-                
             }
             .onTapGesture {
                 if text.wrappedValue.isEmpty {
                     text.wrappedValue = " "
                 }
             }
-
+            
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(.gray, lineWidth: 1)

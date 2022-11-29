@@ -11,6 +11,7 @@ struct SearchBar: View {
     
     @Binding var text: String
     @State private var isEditing = false
+    var barcodeAction: () -> Void
     
     var body: some View {
         ZStack {
@@ -30,6 +31,16 @@ struct SearchBar: View {
                         self.isEditing = true
                     }
                 
+                Button {
+                    barcodeAction()
+                } label: {
+                    Image("barcode")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24)
+                        .padding()
+                }
+
                 if isEditing {
                     Button(action: {
                         self.isEditing = false
@@ -37,9 +48,11 @@ struct SearchBar: View {
                         
                     }) {
                         Text("Cancel")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(ColorName.appGreen.rawValue))
+                            .font(Font.custom(RobotoCondensed.Regular.rawValue, size: 14))
                     }
-                    .padding(.trailing, 10)
+                    .padding(.vertical)
+                    .padding(.trailing, 5)
                     .transition(.move(edge: .trailing))
                     
                 }
@@ -48,7 +61,7 @@ struct SearchBar: View {
                 RoundedRectangle(cornerRadius: 5)
                     .stroke()
                     .foregroundColor(.gray.opacity(0.7))
-                    .frame(height: 40)
+                    .frame(height: 56)
             )
         }
         
@@ -57,6 +70,8 @@ struct SearchBar: View {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant("Search"))
+        SearchBar(text: .constant("Search")) {
+            print("barcode did tapped")
+        }
     }
 }

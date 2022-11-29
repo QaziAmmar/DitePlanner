@@ -151,8 +151,18 @@ extension FirebaseDatabaseManager {
             create_dite_preference(with: preference, firebaseID: fireBaseId)
         }
         
-        for dislike in dislikeFoodArray {
-            create_dislike_food(with: dislike, firebaseID: fireBaseId)
+        
+//        First insert fruits
+        for fruite in fruites_name_array {
+            create_dislike_food(with: DislikeFoodModel(name: fruite, isSelected: false), firebaseID: fireBaseId)
+        }
+//        2nd Vegetables
+        for veg in vegetables_name_array {
+            create_dislike_food(with: DislikeFoodModel(name: veg, isSelected: false), firebaseID: fireBaseId)
+        }
+//        3rd Meets
+        for meet in meats_name_array {
+            create_dislike_food(with: DislikeFoodModel(name: meet, isSelected: false), firebaseID: fireBaseId)
         }
         
         // create goal table

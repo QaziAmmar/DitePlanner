@@ -80,7 +80,7 @@ extension PreferenceViewModel {
                     return dislike
                 } catch {
                     print(error)
-                    return DislikeFoodModel(name: "Fail in Parsing", image: "", isSelected: false)
+                    return DislikeFoodModel(name: "Fail in Parsing", isSelected: false)
                 }
             }
         }

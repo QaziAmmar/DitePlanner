@@ -19,6 +19,7 @@ struct AddRecipeView: View {
     @State var retrievedImages = [UIImage]()
     @State private var showPicker = false
     var recipeDifficulities = ["Easy", "Medium", "Hard"]
+    var recipesTypes = ["Fruits", "Vegetables", "Meats"]
     
     var body: some View {
         loadView()
@@ -44,6 +45,8 @@ extension AddRecipeView {
                         VStack {
                             
                             CustomTextField(placeHolder: "Enter recipe title here", text: $vm.recipeModel.name)
+                            recipesTypesFields()
+
                             foodNuterients()
                             
                             CustomTextField(placeHolder: "30 Min", text: $vm.recipeModel.makeTime)
@@ -97,6 +100,26 @@ extension AddRecipeView {
         }
     }
     
+    
+//    recipeType Fiels
+    
+    func recipesTypesFields() -> some View {
+        VStack {
+            
+            
+            MenuSelection(itemArray: recipesTypes, placeholder: "Recipe Type", selection: $vm.recipeType)
+            
+            if vm.recipeType == "Fruits" {
+                MenuSelection(itemArray: fruites_name_array, placeholder: "Select Fruits", selection: $vm.recipeModel.type)
+            }
+            if vm.recipeType == "Vegetables" {
+                MenuSelection(itemArray: vegetables_name_array, placeholder: "Select  Vegetables", selection: $vm.recipeModel.type)
+            }
+            if vm.recipeType == "Meats" {
+                MenuSelection(itemArray: meats_name_array, placeholder: "Select  Meats", selection: $vm.recipeModel.type)
+            }
+        }
+    }
     
     /// use to selet the image for recipe
     func topImage(geometry: GeometryProxy) -> some View {

@@ -17,6 +17,7 @@ class RecipeViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
     @Published var recipeModel = RecipeModel()
+    @Published var recipeType = ""
     @Published var recipeImage: UIImage?
 
     @Published var recipesArray = [RecipeModel]()
@@ -42,7 +43,7 @@ extension RecipeViewModel {
     private func validationCheck() -> Bool {
 
         
-        if recipeModel.details.isEmpty || recipeModel.name.isEmpty {
+        if recipeModel.details.isEmpty || recipeModel.name.isEmpty || recipeModel.type.isEmpty {
             showError(message: "Please fill all the fields")
             return false
         }

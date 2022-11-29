@@ -16,6 +16,7 @@ struct MealDetailView: View {
     var title: String
     var date: Date?
     var dayofWeek: String?
+
     
     var body: some View {
         loadView()
@@ -112,6 +113,8 @@ extension MealDetailView {
         }
     }
     
+    
+    
     func percentageView(nutration_name: String, nutrationAmount: String) -> some View {
         
         HStack {
@@ -144,6 +147,7 @@ extension MealDetailView {
             
         }
     }
+    
     
 }
 

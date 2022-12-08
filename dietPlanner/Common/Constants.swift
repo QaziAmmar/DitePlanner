@@ -48,9 +48,13 @@ enum ImageName: String {
     // category Check uncheck
     case unckeck = "unckeck"
     case check = "check"
+    case checkList = "checkList"
     
     case delete = "delete"
     case dropDown = "dropDown"
+    
+    // meals icon
+    case calories = "Calories"
     
 }
 

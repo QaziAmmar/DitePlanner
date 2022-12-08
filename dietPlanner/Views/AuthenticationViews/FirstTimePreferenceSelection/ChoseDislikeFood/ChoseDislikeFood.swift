@@ -12,6 +12,7 @@ struct ChoseDislikeFood: View {
     @ObservedObject var vm: PreferenceViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @StateObject var goal_vm = GoalViewModel()
     var body: some View {
         loadView()
             .background(Color(ColorName.appMain.rawValue))
@@ -40,10 +41,19 @@ extension ChoseDislikeFood {
 
             Spacer()
             
-            GreenBtn(action: {
-                // change root controller of the application
-                UserDefaultManager.Authenticated.send(true)
-            }, title: "Save Preferences")
+            
+            NavigationLink {
+                HideNavbarOf(view: SetCaloriesGoals(vm: goal_vm, type: DAILY, isNavigatedFromSignUp: true))
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(height: 50)
+                        .foregroundColor(Color(ColorName.appGreen.rawValue))
+                    Text("Next")
+                        .foregroundColor(.white)
+                        .font(Font.custom(Nunito.Bold.rawValue, size: 20))
+                }
+            }
             
             
         }.padding()

@@ -19,9 +19,12 @@ class ShoppingCheckListViewModel: ObservableObject {
     @Published var showError: Bool = false
     @Published var shoppingItemModel = ShoppingItemModel()
     @Published var shopping_items_array = [ShoppingItemModel]()
+    @Published var all_shopping_items: [String: [ShoppingItemModel]] = [:]
     @Published var noItemFound = false
 
     var categoryName: String = ""
+    
+    var categoriesName = ["Bakery","Fruits & Vagetables", "Meat & poultry", "Dairy & Eggs", "Pantry", "Household"]
     
     // Firebase Variable
     let userID = UserDefaultManager.shared.userId
@@ -50,9 +53,22 @@ extension ShoppingCheckListViewModel {
         return true
 
     }
+    
+    func getAllShoppingItemListName() -> [String] {
+        
+        var nameList = [String]()
+        for (name, _) in all_shopping_items {
+            let items = all_shopping_items[name] ?? []
+            if items.count != 0 {
+                nameList.append("-> " + name)
+                nameList.append(contentsOf: items.map{$0.name})
+            }
+            
+        }
+        return nameList
+    }
 
 }
-
 
 
 // MARK: FireBase CRUD Extesion
@@ -71,6 +87,8 @@ extension ShoppingCheckListViewModel {
                 completion(false, "failed to write to database")
                 return
             }
+            // re-init the variable because when we again press the add button its agian shows the previous entry
+            self.shoppingItemModel = ShoppingItemModel()
             completion(true, ref.key ?? "no key found")
         })
         
@@ -101,16 +119,50 @@ extension ShoppingCheckListViewModel {
             }
         }
     }
+    
+    
+    /// This function will get the list of all shopping categoy
+    func getAllshoppingList() {
+        
+        for category in categoriesName {
+        
+            database.child(tableName).child(userID).child(category).observe(.value) { snapshot in
+                // 5
+                guard let children = snapshot.children.allObjects as? [DataSnapshot] else {
+                    return
+                }
+                if children.count == 0 {
+                    self.noItemFound = true
+                }
+                // 6
+                self.all_shopping_items[category] = children.compactMap { snapshot in
+                    // 7
+                    do {
+                        let item =  try snapshot.data(as: ShoppingItemModel.self)
+                        item.id = snapshot.ref.key
+                        return item
+                    } catch {
+                        print(error)
+                        return ShoppingItemModel()
+                    }
+
+                }
+            }
+            
+        }
+        
+        
+    }
 
 
-    func updateShoppingItem(shoppingItem: ShoppingItemModel) {
+    func updateShoppingItem(shoppingItem: ShoppingItemModel, categoryName: String) {
         if let id = shoppingItem.id {
             database.child(tableName).child(userID).child(categoryName).child(id).updateChildValues(shoppingItem.convertToDictionary!)
         }
     }
     
     
-    func deleteShppingItem(shoppingItem: ShoppingItemModel) {
+    func deleteShppingItem(shoppingItem: ShoppingItemModel, categoryName: String) {
         if let id = shoppingItem.id {
             database.child(tableName).child(userID).child(categoryName).child(id).removeValue()
         }

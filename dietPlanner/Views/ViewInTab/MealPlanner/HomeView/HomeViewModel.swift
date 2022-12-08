@@ -28,6 +28,8 @@ class HomeViewModel: ObservableObject {
     @Published var dinner = [RecipeModel]()
     @Published var snacks = [RecipeModel]()
     
+    @Published var totalCalories = 0
+    
     // Loading Variables for data
     @Published var isBreakFastLoading = false
     @Published var isLunchLoading = false
@@ -72,6 +74,7 @@ extension HomeViewModel {
     
     func fetchAllDayMeals(date: Date) {
         
+        totalCalories = 0
         
         let strDate = DateManager.standard.getCurrentString(from: date)
         // fetech breakfast
@@ -88,6 +91,8 @@ extension HomeViewModel {
                 do {
                     var recipe =  try snapshot.data(as: RecipeModel.self)
                     recipe.id = snapshot.ref.key
+                    // Calculated total calories added
+                    self.updateTodayTotalCalories(strDate: strDate,calories: Int(recipe.calories) ?? 0)
                     return recipe
                 } catch {
                     print(error)
@@ -111,6 +116,8 @@ extension HomeViewModel {
                 do {
                     var recipe =  try snapshot.data(as: RecipeModel.self)
                     recipe.id = snapshot.ref.key
+                    // Calculated total calories added
+                    self.updateTodayTotalCalories(strDate: strDate,calories: Int(recipe.calories) ?? 0)
                     return recipe
                 } catch {
                     print(error)
@@ -132,6 +139,8 @@ extension HomeViewModel {
                 do {
                     var recipe =  try snapshot.data(as: RecipeModel.self)
                     recipe.id = snapshot.ref.key
+                    // Calculated total calories added
+                    self.updateTodayTotalCalories(strDate: strDate,calories: Int(recipe.calories) ?? 0)
                     return recipe
                 } catch {
                     print(error)
@@ -153,6 +162,8 @@ extension HomeViewModel {
                 do {
                     var recipe =  try snapshot.data(as: RecipeModel.self)
                     recipe.id = snapshot.ref.key
+                    // Calculated total calories added
+                    self.updateTodayTotalCalories(strDate: strDate,calories: Int(recipe.calories) ?? 0)
                     return recipe
                 } catch {
                     print(error)
@@ -162,9 +173,13 @@ extension HomeViewModel {
         }
     }
     
-    
-    
-    
+//    this method is using these calories values in setting page
+    func updateTodayTotalCalories(strDate: String, calories: Int)  {
+        if strDate == DateManager.standard.getCurrentString(from: Date()) {
+            totalCalories += calories
+            UserDefaultManager.shared.setTotalCalories(calories: totalCalories)
+        }
+    }
 }
 
 

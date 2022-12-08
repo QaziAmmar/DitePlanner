@@ -95,24 +95,34 @@ class DateManager {
         
     }
     
-    /// This function will get the date base on the name of week day. 
+    /// This function will get the date base on the name of week day.
     func getDateFromWeekDay(weekDay: String, date: Date) -> Date {
         
-        if weekDay == "Sun" {
-            return date.next(.sunday)
-        } else if weekDay == "Mon" {
-            return date.next(.monday)
-        }else if weekDay == "Tue" {
-            return date.next(.tuesday)
-        }else if weekDay == "Wed" {
-            return date.next(.wednesday)
-        }else if weekDay == "Thu" {
-            return date.next(.tuesday)
-        }else if weekDay == "Fri" {
-            return date.next(.friday)
-        }else {
-            return date.next(.saturday)
+        var returnDate: Date!
+        
+        //        check if return date and current date is equal then you need to return the current date
+        let currentDate = Date()
+        if currentDate.hasSame(.day, as: date) {
+            return currentDate
         }
+        
+        if weekDay == "Sun" {
+            returnDate = date.next(.sunday)
+        } else if weekDay == "Mon" {
+            returnDate = date.next(.monday)
+        }else if weekDay == "Tue" {
+            returnDate = date.next(.tuesday)
+        }else if weekDay == "Wed" {
+            returnDate = date.next(.wednesday)
+        }else if weekDay == "Thu" {
+            returnDate = date.next(.thursday)
+        }else if weekDay == "Fri" {
+            returnDate = date.next(.friday)
+        }else {
+            returnDate = date.next(.saturday)
+        }
+      
+        return returnDate
     }
     
 }

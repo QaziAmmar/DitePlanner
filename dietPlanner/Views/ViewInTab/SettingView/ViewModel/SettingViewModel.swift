@@ -15,6 +15,9 @@ class SettingViewModel: ObservableObject {
     
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
+    
+    @Published var totalCalories = 0
+    @Published var consumedCalories = 0
 
     func removeUser() {
 
@@ -35,6 +38,12 @@ class SettingViewModel: ObservableObject {
         }
        
     }
+    
+    
+    func caloriesConsumedPercentage() -> Double {
+        return Double(consumedCalories) / Double(totalCalories)
+    }
+    
     private func removeUserFromDatabase(fireBaseId: String) {
         
 
@@ -48,6 +57,15 @@ class SettingViewModel: ObservableObject {
             SwiftSpinner.hide()
         }
     }
+    
+    func readGoald()  {
+        let goals = UserDefaultManager.shared.getGoal(type: DAILY)
+        if goals.calories == 0.0 {
+            print("no goal is set")
+        }
+    }
+    
+    
     
     func showError(message: String)  {
         errorMessage = message

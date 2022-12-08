@@ -23,6 +23,8 @@ enum UserDefaultEnum: String {
     // goals
     case dailyGoal
     case weeklyGoal
+//    today's total calories
+    case totalCalories
 }
 
 
@@ -166,6 +168,16 @@ extension UserDefaultManager {
         }
         print("No Goal Found in UsersDefaults")
         return Goals()
+    }
+    
+    
+    /// save user Daily goals
+    func setTotalCalories(calories: Int) {
+        userDefaults.set(calories, forKey: UserDefaultEnum.totalCalories.rawValue)
+    }
+    
+    func getTotalCalories() -> Int {
+        userDefaults.integer(forKey: UserDefaultEnum.totalCalories.rawValue)
     }
 }
 

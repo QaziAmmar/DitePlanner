@@ -13,9 +13,20 @@ struct SetCaloriesGoals: View {
     
     @ObservedObject var vm: GoalViewModel
     var type: String
+    @State private var showAlert = false
+    @State private var isAlertShown = false
+    
+    var isNavigatedFromSignUp = false
+    
     
     var body: some View {
         loadView()
+        
+            .sheet(isPresented: $showAlert) {
+                CalorieAlertView().onDisappear {
+                    isAlertShown = true
+                }
+            }
             .onAppear {
                 vm.tempGoals = vm.goals
             }
@@ -32,17 +43,40 @@ extension SetCaloriesGoals {
         GeometryReader { geometry in
             VStack {
                 NavBar(action: {
-                    self.presentationMode.wrappedValue.dismiss()
+                    
+                    if isAlertShown {
+                        self.presentationMode.wrappedValue.dismiss()
+                        
+                    } else {
+                        
+                        //                    5000
+                        if (vm.tempGoals.calories * 5000) < 1000 {
+                            showAlert.toggle()
+                        } else {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+                    
+                    
+                    
                 }, title: "Goals")
                 
                 GoalSliderRow(text: "Calories", value: $vm.tempGoals.calories, color: .purple)
                 GoalSliderRow(text: "Fats", value: $vm.tempGoals.fats, color: .red)
                 GoalSliderRow(text: "Protein", value: $vm.tempGoals.protein, color: .yellow)
                 GoalSliderRow(text: "Carbohydrates", value: $vm.tempGoals.carbohydrates, color: .green)
-                    
                 
                 Spacer()
                 
+                // Show this button only when you login for the first time.
+                if isNavigatedFromSignUp {
+                    GreenBtn(action: {
+                        // change root controller of the application
+                        vm.updateGoals(goal: vm.tempGoals, type: type)
+                        UserDefaultManager.Authenticated.send(true)
+                    }, title: "Save Preferences")
+                    .padding()
+                }
             }
         }
         

@@ -24,7 +24,7 @@ struct SettingView: View {
                            SettingModel(title: "Preferences", subTitle: "Edit your food preference & Dislikes", image: "preferences", type: .preferences),
                            SettingModel(title: "Change Password", subTitle: "Change your password here", image: "changePassword", type: .changePassword),
                            SettingModel(title: "Calorie & Macro Daily Goals", subTitle: "Create Calorie & Macro Daily Goals", image: "dailyGoal", type: .dailyGoal),
-                           SettingModel(title: "Calorie & Macro Weekly Goals", subTitle: "Create Calorie & Macro Weekly Goals", image: "weeklyGoal", type: .weeklyGoal),
+//                           SettingModel(title: "Calorie & Macro Weekly Goals", subTitle: "Create Calorie & Macro Weekly Goals", image: "weeklyGoal", type: .weeklyGoal),
                            SettingModel(title: "Delete Account", subTitle: "We are really sorry to hear that", image: "deleteAccount", type: .deleteAccount)]
     
     var body: some View {
@@ -37,6 +37,10 @@ struct SettingView: View {
                     vm.removeUser()
                 }
             }
+            .onAppear {
+                vm.totalCalories = Int(UserDefaultManager.shared.getGoal(type: DAILY).calories * 5000)
+                vm.consumedCalories = UserDefaultManager.shared.getTotalCalories()
+            }
     }
 }
 
@@ -48,8 +52,11 @@ extension SettingView {
         VStack {
             navBarView()
                 .padding(.vertical)
-            
-            ScrollView {
+
+            ScrollView(showsIndicators: false) {
+                
+                todayProgressView()
+                
                 ForEach(settingMenuList) { settingmodel in
                     SettingRow(setting: settingmodel, onTap: { type in
                         handleNavigation(type: type)
@@ -74,6 +81,80 @@ extension SettingView {
             .foregroundColor(Color(ColorName.appAqua.rawValue))
     }
     
+    func todayProgressView() -> some View {
+        VStack {
+            VStack {
+                HStack {
+                    Text("Today's Progress")
+                        .font(.custom(Nunito.Bold.rawValue, size: 16))
+                    Spacer()
+                    HStack{
+                        Text("🎉 Keep the pace! You’re doing great.")
+                            .font(.custom(Nunito.Regular.rawValue, size: 8))
+                    }
+                }
+                
+                VStack {
+                    Image(ImageName.calories.rawValue)
+                        .resizable()
+                        .frame(width:18, height: 21)
+                        .background(
+                            Circle()
+                                .foregroundColor(Color("bgPurple"))
+                                .padding(-10)
+                        )
+                    Text("Calories")
+                        .padding(.top, 5)
+                    Text("\(vm.totalCalories)")
+                        .foregroundColor(Color("Purple"))
+                }.padding(.top, 5)
+
+                progressBar(name: "Remaining", calories: "\(vm.totalCalories - vm.consumedCalories) Kcal", color: .red, progress: (1 - vm.caloriesConsumedPercentage()) )
+                progressBar(name: "Eaten 🍽️", calories: "\(vm.consumedCalories) Kcal", color: .green, progress: vm.caloriesConsumedPercentage())
+                
+            }.padding()
+            
+            .background(
+                Rectangle()
+                .cornerRadius(10, corners: .allCorners)
+                .foregroundColor(.white)
+                .shadow(radius: 3)
+            )
+            
+        }.padding(10)
+     
+    }
+    
+    func progressBar(name: String, calories: String, color: Color, progress: Double) -> some View {
+
+            VStack {
+                HStack {
+                    Text(name)
+                    Spacer()
+                    Text(calories)
+                        .font(.custom(Nunito.Regular.rawValue, size: 12))
+                        .foregroundColor(.gray)
+                }
+                ZStack {
+                    GeometryReader { geo in
+                        Rectangle()
+                            .cornerRadius(5)
+                            .foregroundColor(.gray.opacity(0.2))
+                            
+                        Rectangle()
+                            .cornerRadius(5)
+                            .foregroundColor(color.opacity(0.9))
+//if progress < 0 then make progress 0
+//                        if progress greate then 1 then  make progress 1
+                            .frame(width: geo.size.width * (progress < 0.0 ? 0.0 : progress > 1 ? 1 : progress))
+                    }
+                        
+                }
+            }
+        
+        
+    }
+    
     var hiddenNavigationLinks: some View {
         
         ZStack() {
@@ -81,7 +162,7 @@ extension SettingView {
             NavigationLink("", destination: HideNavbarOf(view: EditProfileView()), isActive: $moveToEditProfile)
             NavigationLink("", destination: HideNavbarOf(view: ChangePasswordView()), isActive: $moveToChangePassword)
             NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView(type: DAILY)), isActive: $moveToDailyGoals)
-            NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView(type: WEEKLY)), isActive: $moveToWeeklyGoals)
+//            NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView(type: WEEKLY)), isActive: $moveToWeeklyGoals)
         }
         .hidden()
         .frame(height: 0)

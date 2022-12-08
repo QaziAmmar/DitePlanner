@@ -12,6 +12,7 @@ struct ShoppingCheckListRow: View {
     @Binding var shoppingItem: ShoppingItemModel
     @ObservedObject var vm: ShoppingCheckListViewModel
     var isEditing = false
+    var categoryName: String
     
     
     var body: some View {
@@ -48,7 +49,7 @@ extension ShoppingCheckListRow {
     func editButton() -> some View {
         Button {
             shoppingItem.isChecked = !shoppingItem.isChecked
-            vm.updateShoppingItem(shoppingItem: shoppingItem)
+            vm.updateShoppingItem(shoppingItem: shoppingItem, categoryName: categoryName)
         } label: {
             Image(shoppingItem.isChecked ? ImageName.check.rawValue : ImageName.unckeck.rawValue)
                 .resizable()
@@ -58,7 +59,7 @@ extension ShoppingCheckListRow {
     
     func deleteButton() -> some View {
         Button {
-            vm.deleteShppingItem(shoppingItem: shoppingItem)
+            vm.deleteShppingItem(shoppingItem: shoppingItem, categoryName: categoryName)
         } label: {
             Image(ImageName.delete.rawValue)
                 .resizable()
@@ -70,6 +71,6 @@ extension ShoppingCheckListRow {
 
 struct ShoppingCheckListRow_Previews: PreviewProvider {
     static var previews: some View {
-        ShoppingCheckListRow(shoppingItem: .constant(ShoppingItemModel()), vm: ShoppingCheckListViewModel())
+        ShoppingCheckListRow(shoppingItem: .constant(ShoppingItemModel()), vm: ShoppingCheckListViewModel(), categoryName: "Bakery")
     }
 }

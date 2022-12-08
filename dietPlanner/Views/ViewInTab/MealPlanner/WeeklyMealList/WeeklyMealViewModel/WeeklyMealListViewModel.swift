@@ -114,6 +114,5 @@ extension WeeklyMealListViewModel {
         database.child(mealPlannerTable).child(userID).child(mealCategory).child(strDate).child(recipe.id!).removeValue()
         
     }
-    
-    
+
 }

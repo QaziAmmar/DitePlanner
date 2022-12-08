@@ -124,6 +124,7 @@
 		7A3576BE2902A89C005DF38F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3576BC2902A89C005DF38F /* LoginViewModel.swift */; };
 		7A3576C429031794005DF38F /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3576C129031792005DF38F /* PasswordTextField.swift */; };
 		7A3576C829032014005DF38F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3576C729032014005DF38F /* Helper.swift */; };
+		7A35DA38293737720064F037 /* CalorieAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35DA37293737720064F037 /* CalorieAlertView.swift */; };
 		7A45F66C291392CE00EFCDFE /* CircularCreateNewBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A45F66B291392CE00EFCDFE /* CircularCreateNewBtn.swift */; };
 		7A45F66F29139B5500EFCDFE /* MealRecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A45F66E29139B5500EFCDFE /* MealRecommendationView.swift */; };
 		7A45F6712913A17F00EFCDFE /* RecommendedMealCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A45F6702913A17F00EFCDFE /* RecommendedMealCard.swift */; };
@@ -139,6 +140,8 @@
 		7A540FD82935F78D00E6838A /* BarCodeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A540FD72935F78D00E6838A /* BarCodeDataModel.swift */; };
 		7A540FE1293614B800E6838A /* BarcodeMealDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A540FE0293614B800E6838A /* BarcodeMealDetailView.swift */; };
 		7A59CEF22914001B0092D75E /* MyRecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A59CEF12914001B0092D75E /* MyRecipeCard.swift */; };
+		7A64248529409CA600F7FA20 /* DateEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A64248429409CA600F7FA20 /* DateEx.swift */; };
+		7A6424872940B26E00F7FA20 /* ShoppingCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6424862940B26E00F7FA20 /* ShoppingCartView.swift */; };
 		7A66C7CD2914FB7400FEB6E6 /* MenuSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A66C7CC2914FB7400FEB6E6 /* MenuSelection.swift */; };
 		7A895B5D29151B7000AC06A3 /* MealRecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A895B5C29151B7000AC06A3 /* MealRecommendationViewModel.swift */; };
 		7A909A912908153300137327 /* MLBTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A909A902908153300137327 /* MLBTextEditor.swift */; };
@@ -284,6 +287,7 @@
 		7A3576BC2902A89C005DF38F /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7A3576C129031792005DF38F /* PasswordTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		7A3576C729032014005DF38F /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		7A35DA37293737720064F037 /* CalorieAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieAlertView.swift; sourceTree = "<group>"; };
 		7A45F66B291392CE00EFCDFE /* CircularCreateNewBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularCreateNewBtn.swift; sourceTree = "<group>"; };
 		7A45F66E29139B5500EFCDFE /* MealRecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRecommendationView.swift; sourceTree = "<group>"; };
 		7A45F6702913A17F00EFCDFE /* RecommendedMealCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedMealCard.swift; sourceTree = "<group>"; };
@@ -297,6 +301,8 @@
 		7A540FD72935F78D00E6838A /* BarCodeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCodeDataModel.swift; sourceTree = "<group>"; };
 		7A540FE0293614B800E6838A /* BarcodeMealDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeMealDetailView.swift; sourceTree = "<group>"; };
 		7A59CEF12914001B0092D75E /* MyRecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipeCard.swift; sourceTree = "<group>"; };
+		7A64248429409CA600F7FA20 /* DateEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateEx.swift; sourceTree = "<group>"; };
+		7A6424862940B26E00F7FA20 /* ShoppingCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartView.swift; sourceTree = "<group>"; };
 		7A66C7CC2914FB7400FEB6E6 /* MenuSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSelection.swift; sourceTree = "<group>"; };
 		7A895B5C29151B7000AC06A3 /* MealRecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRecommendationViewModel.swift; sourceTree = "<group>"; };
 		7A909A902908153300137327 /* MLBTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLBTextEditor.swift; sourceTree = "<group>"; };
@@ -487,6 +493,7 @@
 				7AAA0938290BA08000F969F4 /* CalorieGoalView.swift */,
 				7A4C6ABF29237E6A00996CA9 /* SetCaloriesGoals.swift */,
 				7A4C6AC429238BB600996CA9 /* GoalSliderRow.swift */,
+				7A35DA37293737720064F037 /* CalorieAlertView.swift */,
 			);
 			path = CalorieMacroGoals;
 			sourceTree = "<group>";
@@ -618,6 +625,7 @@
 		7A1BE8D8290BBE9E0056A971 /* Shopping */ = {
 			isa = PBXGroup;
 			children = (
+				7A6424882940B27100F7FA20 /* ShoppingCart */,
 				7A1BE8E7290BD4120056A971 /* Model */,
 				7A1BE8DF290BD0550056A971 /* ShoppingCheckList */,
 				7A1BE8DE290BD04A0056A971 /* ShoppingCategory */,
@@ -728,6 +736,7 @@
 				7A35764F290189FE005DF38F /* TFPlaceHolderExtension.swift */,
 				7A357650290189FE005DF38F /* UIImageExt.swift */,
 				7AEE8E5A2909BAC800734C3E /* CodableEx.swift */,
+				7A64248429409CA600F7FA20 /* DateEx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -995,6 +1004,14 @@
 				7A540FE0293614B800E6838A /* BarcodeMealDetailView.swift */,
 			);
 			path = BarcodeMealDetailView;
+			sourceTree = "<group>";
+		};
+		7A6424882940B27100F7FA20 /* ShoppingCart */ = {
+			isa = PBXGroup;
+			children = (
+				7A6424862940B26E00F7FA20 /* ShoppingCartView.swift */,
+			);
+			path = ShoppingCart;
 			sourceTree = "<group>";
 		};
 		7A66C7CB2914FB5C00FEB6E6 /* MenuSelection */ = {
@@ -1422,6 +1439,7 @@
 				4AB9D07128DB19E9009E67E0 /* AYHorindarUIDelegate.swift in Sources */,
 				4AB9D06E28DB19E9009E67E0 /* UIView.swift in Sources */,
 				7A1BE8E1290BD0710056A971 /* ShoppingCheckList.swift in Sources */,
+				7A6424872940B26E00F7FA20 /* ShoppingCartView.swift in Sources */,
 				7A314B142909832900482082 /* ChosePreferenceView.swift in Sources */,
 				7AACF8B129100F2700217077 /* MealPlannerItemRow.swift in Sources */,
 				7AAA0937290ABD0400F969F4 /* ChangePasswordViewModel.swift in Sources */,
@@ -1439,6 +1457,7 @@
 				7A357665290189FF005DF38F /* AlignmentExt.swift in Sources */,
 				7AACF8AC290FDD3200217077 /* ActiveMealRow.swift in Sources */,
 				4AB7B71928E1B7240068E882 /* ChangePasswordView.swift in Sources */,
+				7A64248529409CA600F7FA20 /* DateEx.swift in Sources */,
 				7A357667290189FF005DF38F /* TFPlaceHolderExtension.swift in Sources */,
 				4AB9D04228D998C1009E67E0 /* MealCategoryView.swift in Sources */,
 				7A35767929018AB5005DF38F /* LikeQuoteModel.swift in Sources */,
@@ -1455,6 +1474,7 @@
 				7A35766E290189FF005DF38F /* DateManager.swift in Sources */,
 				7A2FC427291D04DB00580699 /* SettingRow.swift in Sources */,
 				7A4C6AC029237E6A00996CA9 /* SetCaloriesGoals.swift in Sources */,
+				7A35DA38293737720064F037 /* CalorieAlertView.swift in Sources */,
 				7A357672290189FF005DF38F /* Validator.swift in Sources */,
 				7A45F66C291392CE00EFCDFE /* CircularCreateNewBtn.swift in Sources */,
 				7A357666290189FF005DF38F /* String.swift in Sources */,

@@ -32,46 +32,40 @@ struct ShoppingCategoryListView: View {
 extension ShoppingCategoryListView {
     
     func loadView() -> some View {
-        ZStack(){
-            VStack{
-                
-                navBarView()
-                shoppingList()
-                
-            }.padding()
-       
-        }
+        VStack{
+            shoppingList()
+            
+        }.padding()
+        
     }
     
     
-    
-    func navBarView() -> some View {
-        ZStack{
-            HStack{
-
-                Spacer()
-                
-            }
-            Text("Shopping List")
-                .font(.custom(Nunito.Bold.rawValue, size: 22.5))
-                .foregroundColor(Color(ColorName.appAqua.rawValue))
-        }
-    }
     
     
     func shoppingList() -> some View {
         VStack(alignment: .leading) {
             
-            Text("Select Category")
-                .font(Font.custom(Nunito.Medium.rawValue, size: 30))
+            HStack {
+                Text("Select Category")
+                    .font(Font.custom(Nunito.Medium.rawValue, size: 30))
+                
+                Spacer()
+                
+                NavigationLink(destination: HideNavbarOf(view: ShoppingCartView()), label: {
+                    Image("checkList")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                })
+            }
+            
             
             ScrollView {
                 VStack {
                     ForEach(0..<categoriesName.count, id: \.self) { i in
                         // generate different colors
                         let color: Color = ((i % 2 == 0) ? Color(ColorName.categorybg1.rawValue) : Color(ColorName.categorybg2.rawValue))
-                        NavigationLink(
-                            destination: HideNavbarOf(view: ShoppingCheckList(categoryName: categoriesName[i])))
+                        NavigationLink(destination: HideNavbarOf(view: ShoppingCheckList(categoryName: categoriesName[i])))
                         {
                             ShoppingRow(image: categoiresIcon[i], name: categoriesName[i], bgColor: color)
                         }

@@ -18,10 +18,16 @@ class MealRecommendationViewModel: ObservableObject {
     
     @Published var categories = ["Breakfast", "Lunch", "Dinner", "Snack-Other"]
     @Published var selectedCategory = 0
+    @Published var portionOfMealSelected = "1"
     
     @Published var errorMessage: String = ""
     @Published var showError: Bool = false
     @Published var noMyRecipesFound = false
+    
+    // this varibale is use to navigatio to detail view after a product is founded in online barcode database
+    @Published var moveMealDetailView = false
+    // we will take the proudct form online barcode database and then transformed it into our Recipted model
+    @Published var transformedRecipeModel = RecipeModel()
     
     @Published var myRecipes = [RecipeModel]()
     @Published var others_Recipes = [RecipeModel]()
@@ -40,6 +46,30 @@ class MealRecommendationViewModel: ObservableObject {
 
 // MARK: Custom Function Extension
 extension MealRecommendationViewModel {
+    
+    
+//    convert fraction into decimal
+    
+    func convertFractionInToDecimal(fraction: String) -> Float {
+
+        if fraction.isEmpty {
+            return 1.0
+        }
+        
+        if fraction.count == 1 {
+            return 1.0
+        }
+        
+        let comps = fraction.components(separatedBy: "/")
+
+       //Do some validation here so as to check the correct format of fraction text.
+
+        let op1 = NSString(string: comps[0]).floatValue
+        let op2 = NSString(string: comps[1]).floatValue
+
+       return op1/op2
+
+    }
 
     // show error
     func showError(message: String)  {
@@ -161,6 +191,9 @@ extension MealRecommendationViewModel {
     ///     if dayOfweek is not null then add into Weekly meal plane
     func addMeal(recipe: RecipeModel, date: Date?, dayOfweek: String?, mealCategory: String, completion: @escaping (Bool, String) -> ()) {
 
+//        make this value variable
+        var recipe_var = recipe
+        recipe_var.calories = "\((Float(recipe.calories) ?? 0) * convertFractionInToDecimal(fraction: portionOfMealSelected))"
         
         if date != nil {
             // add recipe into daliy plane
@@ -169,7 +202,7 @@ extension MealRecommendationViewModel {
             // use the same recipe id that we have save into the database
 
             
-            database.child(mealPlannerTable).child(userID).child(mealCategory).child(strDate).child(recipe.id!).setValue(recipe.convertToDictionary!, withCompletionBlock: { error, ref in
+            database.child(mealPlannerTable).child(userID).child(mealCategory).child(strDate).child(recipe.id!).setValue(recipe_var.convertToDictionary!, withCompletionBlock: { error, ref in
                 
                 SwiftSpinner.hide()
                 
@@ -187,7 +220,7 @@ extension MealRecommendationViewModel {
             // add meal into weekly plane.
             SwiftSpinner.show("Loading...")
             // make this recipe as a part of weekly plan.
-            var weeklyRecipe = recipe
+            var weeklyRecipe = recipe_var
             weeklyRecipe.isPartOfDaliyPlan = false
             
             // use the same recipe id that we have save into the database
@@ -232,7 +265,7 @@ extension MealRecommendationViewModel {
     func updateDailyMealPlannerWithWeeklyPlane(recipe: RecipeModel, dayOfweek: String?, mealCategory: String) {
         
         // this line will get the date for day of the week.
-        let dateOfWeekDay = DateManager.standard.getDateFromWeekDay(weekDay: dayOfweek ?? "Mon", date: UserDefaultManager.shared.getStartDateOfWeek() ?? Date())
+        let dateOfWeekDay = DateManager.standard.getDateFromWeekDay(weekDay: dayOfweek ?? "", date: UserDefaultManager.shared.getStartDateOfWeek() ?? Date())
         
         let strDate = DateManager.standard.getCurrentString(from: dateOfWeekDay)
         
@@ -253,7 +286,7 @@ extension MealRecommendationViewModel {
 
 extension MealRecommendationViewModel {
     
-    func callNetworkApi(productId: String, success: @escaping (RecipeModel?) -> Void) {
+    func callNetworkApi(productId: String) {
 
         NetworkManager.shared.URLrequest(productId: productId, methodType: .get, parametres: nil, returnType: BarCodeDataModel.self) { data, statusCode in
             
@@ -279,18 +312,23 @@ extension MealRecommendationViewModel {
                     recipeModel.makeTime = "Easy"
                     recipeModel.userName = UserDefaultManager.shared.userName
                     
-                    recipeModel.fat = String(product.product?.nutriments?.fat100G ?? 0.0)
-                    recipeModel.calories = String(product.product?.nutriments?.energy100G ?? 0)
-                    recipeModel.protenis = String(product.product?.nutriments?.proteins100G ?? 0.0)
-                    recipeModel.carbohydrates = String(product.product?.nutriments?.carbohydrates100G ?? 0.0)
+                    recipeModel.fat = String(format: "%.3f", product.product?.nutriments?.fat100G ?? 0.0)
+                    recipeModel.calories = String(format: "%.3f", product.product?.nutriments?.energy100G ?? 0)
+                    recipeModel.protenis = String(format: "%.3f", product.product?.nutriments?.proteins100G ?? 0.0)
+                    recipeModel.carbohydrates = String(format: "%.3f", product.product?.nutriments?.carbohydrates100G ?? 0.0)
                     
-                    success(recipeModel)
-
+                    // this is use to navigat througout the app
+                    UserDefaults.standard.set("", forKey: "productID")
+                    
+                        self.transformedRecipeModel = recipeModel
+                        self.moveMealDetailView = true
+                    
+                    
                     
                 } else {
                     print(product.statusVerbose ?? "")
                     self.showError(message: product.statusVerbose ?? "No Product found ")
-                    success(nil)
+                    
                     
                 }
 

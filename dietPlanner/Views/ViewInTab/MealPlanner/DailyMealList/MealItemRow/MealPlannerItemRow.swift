@@ -13,6 +13,7 @@ struct MealPlannerItemRow: View {
     @State private var item = RowItem(offset: 0, isSwiped: false)
     var recipe: RecipeModel
     var onDelete: (RecipeModel) -> ()
+    @State private var opacity = 0.0
     
     var body: some View {
         loadView()

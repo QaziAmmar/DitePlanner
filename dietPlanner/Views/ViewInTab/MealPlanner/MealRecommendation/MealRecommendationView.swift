@@ -13,9 +13,10 @@ struct MealRecommendationView: View {
     @State private var searchText = ""
     @State private var moveToBarCodeView = false
     
-//    These two variablse works togahter
-    @State private var moveMealDetailView = false
-    @State private var transformedRecipeModel = RecipeModel()
+    
+    // this is use to handle the navigation from barcode scane View to barcode Detaila View
+    @AppStorage("productID") private var productId: String = ""
+    
     
     @StateObject var vm = MealRecommendationViewModel()
     
@@ -34,9 +35,19 @@ struct MealRecommendationView: View {
                 vm.fetchMyRecipes()
                 vm.fetchOthersRecipes()
             }
+            
+            .onChange(of: productId, perform: { newValue in
+                print(productId)
+                if !productId.isEmpty {
+                    vm.callNetworkApi(productId: productId)
+                }
+            })
             .alert(isPresented: $vm.showError) {
                 Alert(title: Text(vm.errorMessage))
                     
+            }
+            .sheet(isPresented: $moveToBarCodeView) {
+                BarcodeScanView()
             }
     }
 }
@@ -58,6 +69,7 @@ extension MealRecommendationView {
                             moveToBarCodeView.toggle()
                         })
                             .padding(.top, 5)
+
                         // MY recipes
                         myRecipes(geometry: geometry)
                             .padding(.vertical)
@@ -67,7 +79,7 @@ extension MealRecommendationView {
                     }
                     
                 }.padding(.horizontal)
-                    .background(hiddenNavigationLinks)
+                .background(hiddenNavigationLinks)
             }
         }
     }
@@ -125,25 +137,12 @@ extension MealRecommendationView {
     var hiddenNavigationLinks: some View {
         
         ZStack() {
-            NavigationLink("", destination: BarcodeScanView(onProductFound: { productId in
-//                1. call the api to get the product detail form Open Source Fodd API
-                print("start calling \(productId)")
-                vm.callNetworkApi(productId: productId) { recipe in
-                    if let recipe = recipe {
-                        transformedRecipeModel = recipe
-                        moveMealDetailView = true
-                    }
-                }
-                
-            }) , isActive: $moveToBarCodeView)
-            
             
 //            move to product detail for barcode
-            NavigationLink("", destination: HideNavbarOf(view: BarcodeMealDetailView(vm: vm, recipe: $transformedRecipeModel, title: title, date: date, dayofWeek: dayofWeek)) , isActive: $moveMealDetailView)
+            NavigationLink("", destination: HideNavbarOf(view: BarcodeMealDetailView(vm: vm, recipe: $vm.transformedRecipeModel, title: title, date: date, dayofWeek: dayofWeek)) , isActive: $vm.moveMealDetailView)
             
             
         }
-        .hidden()
         .frame(height: 0)
     }
     

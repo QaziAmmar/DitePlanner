@@ -14,6 +14,8 @@ struct TabBarControllerView: View {
     init() {
 
         UITabBar.appearance().unselectedItemTintColor = .gray
+        UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().backgroundColor = .white
     }
     
     var body: some View {

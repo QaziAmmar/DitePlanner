@@ -85,7 +85,9 @@ extension AddRecipeView {
                     NavBar(action: {
                         self.presentationMode.wrappedValue.dismiss()
                     }, title: "")
-                    .padding(.top, 40)
+                    .padding([.top], 40)
+                    .padding([.bottom])
+                    .padding([.horizontal])
                     
                 }
                 .frame(width: geometry.size.width)

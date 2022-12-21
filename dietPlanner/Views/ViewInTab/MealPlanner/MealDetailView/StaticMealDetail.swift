@@ -1,35 +1,23 @@
 //
-//  MealDetailView.swift
+//  StaticMealDetail.swift
 //  dietPlanner
 //
-//  Created by Qazi Ammar Arshad on 03/11/2022.
+//  Created by Qazi Ammar Arshad on 09/12/2022.
 //
 
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct MealDetailView: View {
-    
+struct StaticMealDetail: View {
     @Environment(\.presentationMode) private var presentationMode
-    @ObservedObject var vm: MealRecommendationViewModel
     var recipe : RecipeModel
-    var title: String
-    var date: Date?
-    var dayofWeek: String?
-    
-
-    var frections = ["1", "1/8", "1/4", "1/3" ,"3/8" ,"1/2","5/8", "2/3","3/4", "7/8"]
-    
-    @State private var mealSeletedPortion = ""
-    
-
     
     var body: some View {
         loadView()
     }
 }
 
-extension MealDetailView {
+extension StaticMealDetail {
     
     func loadView() -> some View {
         GeometryReader { geometry in
@@ -74,6 +62,7 @@ extension MealDetailView {
                             nutrationList()
                         }.padding(.bottom)
                         
+
                         // Description
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Descriptions")
@@ -83,20 +72,8 @@ extension MealDetailView {
                                 .font(.custom(Nunito.Medium.rawValue, size: 12))
                                 .foregroundColor(.gray)
                         }
-                        
-                        portionSelectionView()
-                        
+
                         Spacer()
-                        
-                        GreenBtn(action: {
-                            
-                            vm.addMeal(recipe: recipe, date: date, dayOfweek: dayofWeek, mealCategory: title) { status, error in
-                                if status {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                }
-                            }
-                        }, title: "Add to \(title) Meal")
-                        .padding(.vertical)
                         
                     }.padding()
                     
@@ -109,7 +86,7 @@ extension MealDetailView {
     func nutrationList() -> some View {
         HStack {
             Spacer()
-            percentageView(nutration_name: "Calories", nutrationAmount: "\((Float(recipe.calories) ?? 0) * vm.convertFractionInToDecimal(fraction: vm.portionOfMealSelected))")
+            percentageView(nutration_name: "Calories", nutrationAmount: recipe.calories)
             Spacer()
             percentageView(nutration_name: "Fats", nutrationAmount: recipe.fat)
             Spacer()
@@ -154,29 +131,10 @@ extension MealDetailView {
             
         }
     }
-    
-    
-    func portionSelectionView() -> some View {
-        
-        VStack {
-            HStack {
-                Text("Portion")
-                    .font(Font.custom(Nunito.Bold.rawValue, size: 20))
-                    .foregroundColor(.gray)
-                Spacer()
-                MenuSelection(itemArray: frections, placeholder: "1", selection: $vm.portionOfMealSelected)
-                    .frame(width: 150)
-            }
-            Divider()
-        }
-        
-    }
-    
-    
 }
 
-struct MealDetailView_Previews: PreviewProvider {
+struct StaticMealDetail_Previews: PreviewProvider {
     static var previews: some View {
-        MealDetailView(vm: MealRecommendationViewModel(), recipe: RecipeModel(), title: "BreakFast", date: Date(), dayofWeek: "Mon")
+        StaticMealDetail(recipe: RecipeModel())
     }
 }

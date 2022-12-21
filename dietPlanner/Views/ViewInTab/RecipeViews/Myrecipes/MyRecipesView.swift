@@ -51,7 +51,11 @@ extension MyRecipesView {
                         }
                     }
                     ForEach(favouriteView ? $filteredRecipes : $vm.recipesArray) { recipe in
-                        RecipeCard(vm: vm, recipe: recipe)
+                        NavigationLink {
+                            HideNavbarOf(view: StaticMealDetail(recipe: recipe.wrappedValue))
+                        } label: {
+                            RecipeCard(vm: vm, recipe: recipe)
+                        }
                     }
                 }
             }

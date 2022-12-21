@@ -19,7 +19,6 @@ struct RecipeMainView: View {
 
 
 
-
     var body: some View {
         loadView()
             .alert(isPresented: $vm.showError) {

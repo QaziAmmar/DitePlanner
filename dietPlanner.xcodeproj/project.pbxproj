@@ -109,7 +109,6 @@
 		7A3576A629028379005DF38F /* CreateNewBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35768D29028377005DF38F /* CreateNewBtn.swift */; };
 		7A3576A729028379005DF38F /* GreenBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35768E29028377005DF38F /* GreenBtn.swift */; };
 		7A3576A929028379005DF38F /* HideNavbarOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35769029028377005DF38F /* HideNavbarOf.swift */; };
-		7A3576AA29028379005DF38F /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35769229028377005DF38F /* EmojiTextField.swift */; };
 		7A3576AB29028379005DF38F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35769329028377005DF38F /* CustomTextField.swift */; };
 		7A3576AC29028379005DF38F /* AppleSignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35769529028378005DF38F /* AppleSignInViewModel.swift */; };
 		7A3576AD29028379005DF38F /* AppleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A35769629028378005DF38F /* AppleSignInButton.swift */; };
@@ -166,6 +165,7 @@
 		7AD384D3290949CF00497AF2 /* PreferenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD384D2290949CF00497AF2 /* PreferenceModel.swift */; };
 		7AD511912909907000DF2CD7 /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD511902909907000DF2CD7 /* CodableFirebase */; };
 		7ADBF8AC292205DF003DDCDB /* WeekCalander.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADBF8AB292205DF003DDCDB /* WeekCalander.swift */; };
+		7AEDD08029433D150034FEC6 /* StaticMealDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEDD07F29433D150034FEC6 /* StaticMealDetail.swift */; };
 		7AEE8E5B2909BAC800734C3E /* CodableEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEE8E5A2909BAC800734C3E /* CodableEx.swift */; };
 		7AF47257291D4535007A4007 /* WeeklyMealListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF47256291D4535007A4007 /* WeeklyMealListView.swift */; };
 		7AF4725A291D45A7007A4007 /* WeeklyMealListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF47259291D45A7007A4007 /* WeeklyMealListViewModel.swift */; };
@@ -273,7 +273,6 @@
 		7A35768D29028377005DF38F /* CreateNewBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewBtn.swift; sourceTree = "<group>"; };
 		7A35768E29028377005DF38F /* GreenBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreenBtn.swift; sourceTree = "<group>"; };
 		7A35769029028377005DF38F /* HideNavbarOf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavbarOf.swift; sourceTree = "<group>"; };
-		7A35769229028377005DF38F /* EmojiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
 		7A35769329028377005DF38F /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		7A35769529028378005DF38F /* AppleSignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInViewModel.swift; sourceTree = "<group>"; };
 		7A35769629028378005DF38F /* AppleSignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInButton.swift; sourceTree = "<group>"; };
@@ -326,6 +325,7 @@
 		7AD384CF290948AD00497AF2 /* PerferencesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerferencesList.swift; sourceTree = "<group>"; };
 		7AD384D2290949CF00497AF2 /* PreferenceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceModel.swift; sourceTree = "<group>"; };
 		7ADBF8AB292205DF003DDCDB /* WeekCalander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCalander.swift; sourceTree = "<group>"; };
+		7AEDD07F29433D150034FEC6 /* StaticMealDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticMealDetail.swift; sourceTree = "<group>"; };
 		7AEE8E5A2909BAC800734C3E /* CodableEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableEx.swift; sourceTree = "<group>"; };
 		7AF47256291D4535007A4007 /* WeeklyMealListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMealListView.swift; sourceTree = "<group>"; };
 		7AF47259291D45A7007A4007 /* WeeklyMealListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMealListViewModel.swift; sourceTree = "<group>"; };
@@ -879,7 +879,6 @@
 				7A3576C129031792005DF38F /* PasswordTextField.swift */,
 				7A4C35BA290FB6F700423B33 /* FoodNutrientsTextField.swift */,
 				4A95BEAB28D32C7A0018085A /* CustomPasswordField.swift */,
-				7A35769229028377005DF38F /* EmojiTextField.swift */,
 				7A35769329028377005DF38F /* CustomTextField.swift */,
 			);
 			path = CustomTextField;
@@ -959,6 +958,7 @@
 			isa = PBXGroup;
 			children = (
 				7A45F6752913AA6A00EFCDFE /* MealDetailView.swift */,
+				7AEDD07F29433D150034FEC6 /* StaticMealDetail.swift */,
 			);
 			path = MealDetailView;
 			sourceTree = "<group>";
@@ -1393,7 +1393,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A4C35B9290FAC1700423B33 /* SettingView.swift in Sources */,
-				7A3576AA29028379005DF38F /* EmojiTextField.swift in Sources */,
 				7A3576C429031794005DF38F /* PasswordTextField.swift in Sources */,
 				4A95BEA228D307C30018085A /* WalkThrough1View.swift in Sources */,
 				4AB9D07028DB19E9009E67E0 /* NSObject.swift in Sources */,
@@ -1465,6 +1464,7 @@
 				4AABCC4F28D33DDC00335C10 /* SignUp.swift in Sources */,
 				4A03F90828F024E9003FAC1D /* DataManager.swift in Sources */,
 				7A314B172909857900482082 /* PreferenceViewModel.swift in Sources */,
+				7AEDD08029433D150034FEC6 /* StaticMealDetail.swift in Sources */,
 				7A4C6AC529238BB600996CA9 /* GoalSliderRow.swift in Sources */,
 				7AAA092E290A838300F969F4 /* FoodDislikeItem.swift in Sources */,
 				4AB9D06F28DB19E9009E67E0 /* AYHorindarDataSource.swift in Sources */,
@@ -1670,6 +1670,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1705,6 +1706,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

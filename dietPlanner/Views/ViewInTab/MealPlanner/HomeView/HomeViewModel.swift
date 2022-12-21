@@ -28,7 +28,7 @@ class HomeViewModel: ObservableObject {
     @Published var dinner = [RecipeModel]()
     @Published var snacks = [RecipeModel]()
     
-    @Published var totalCalories = 0
+    @Published var totalCalories = 0.0
     
     // Loading Variables for data
     @Published var isBreakFastLoading = false
@@ -92,7 +92,7 @@ extension HomeViewModel {
                     var recipe =  try snapshot.data(as: RecipeModel.self)
                     recipe.id = snapshot.ref.key
                     // Calculated total calories added
-                    self.updateTodayTotalCalories(strDate: strDate,calories: Int(recipe.calories) ?? 0)
+                    self.updateTodayTotalCalories(strDate: strDate,calories: Double(recipe.calories) ?? 0)
                     return recipe
                 } catch {
                     print(error)
@@ -117,7 +117,7 @@ extension HomeViewModel {
                     var recipe =  try snapshot.data(as: RecipeModel.self)
                     recipe.id = snapshot.ref.key
                     // Calculated total calories added
-                    self.updateTodayTotalCalories(strDate: strDate,calories: Int(recipe.calories) ?? 0)
+                    self.updateTodayTotalCalories(strDate: strDate,calories: Double(recipe.calories) ?? 0)
                     return recipe
                 } catch {
                     print(error)
@@ -140,7 +140,7 @@ extension HomeViewModel {
                     var recipe =  try snapshot.data(as: RecipeModel.self)
                     recipe.id = snapshot.ref.key
                     // Calculated total calories added
-                    self.updateTodayTotalCalories(strDate: strDate,calories: Int(recipe.calories) ?? 0)
+                    self.updateTodayTotalCalories(strDate: strDate,calories: Double(recipe.calories) ?? 0)
                     return recipe
                 } catch {
                     print(error)
@@ -163,7 +163,7 @@ extension HomeViewModel {
                     var recipe =  try snapshot.data(as: RecipeModel.self)
                     recipe.id = snapshot.ref.key
                     // Calculated total calories added
-                    self.updateTodayTotalCalories(strDate: strDate,calories: Int(recipe.calories) ?? 0)
+                    self.updateTodayTotalCalories(strDate: strDate,calories: Double(recipe.calories) ?? 0)
                     return recipe
                 } catch {
                     print(error)
@@ -174,10 +174,10 @@ extension HomeViewModel {
     }
     
 //    this method is using these calories values in setting page
-    func updateTodayTotalCalories(strDate: String, calories: Int)  {
+    func updateTodayTotalCalories(strDate: String, calories: Double)  {
         if strDate == DateManager.standard.getCurrentString(from: Date()) {
             totalCalories += calories
-            UserDefaultManager.shared.setTotalCalories(calories: totalCalories)
+            UserDefaultManager.shared.setTotalCalories(calories: Int(totalCalories))
         }
     }
 }
@@ -193,11 +193,11 @@ extension HomeViewModel {
         
         // In the start no start_date_ofweek is added
         if date == nil {
-            let currentDate = Date()
-            let strDate = DateManager.standard.getCurrentString(from: currentDate)
-            UserDefaultManager.shared.setStartDateOfWeek(date: currentDate)
+            var currentDate = Date()
             
-            database.child(start_date_of_week).child(userID).setValue([
+            currentDate = UserDefaultManager.shared.setStartDateOfWeek(date: currentDate)
+            let strDate = DateManager.standard.getCurrentString(from: currentDate)
+            database.child(start_date_of_week).child(userID).updateChildValues([
                 "start_data_of_week": strDate
             ], withCompletionBlock: { error, ref in
                 
@@ -216,9 +216,15 @@ extension HomeViewModel {
             
                 if previousWeekStartDate > addOneWeekToCurrentDate! {
                 // call function to update week date and also update the meal planner accoding to new week.
-                let currentDate = Date()
-                UserDefaultManager.shared.setStartDateOfWeek(date: currentDate)
-                addWeekStartDateToFierBase()
+                var currentDate = Date()
+                currentDate = UserDefaultManager.shared.setStartDateOfWeek(date: currentDate)
+                let strDate = DateManager.standard.getCurrentString(from: currentDate)
+//                addWeekStartDateToFierBase()
+                database.child(start_date_of_week).child(userID).updateChildValues([
+                    "start_data_of_week": strDate
+                ], withCompletionBlock: { error, ref in
+                    
+                })
                 // update the firebase mealplan according to week plan
                 self.updateDailyMealPlaneWithWeeklyPlane()
             }

@@ -41,12 +41,16 @@ extension ActiveMealRow {
                         .padding(.vertical, 5)
                 } else {
                     
-                    ScrollView {
+                    ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(mealList) { meal in
-                                mealCell(recipe: meal)
-                            }// HStack
-                        }// ForEach loop
+                                NavigationLink {
+                                    HideNavbarOf(view: StaticMealDetail(recipe: meal))
+                                } label: {
+                                    mealCell(recipe: meal)
+                                }
+                            }// ForEach loop
+                        }//  HStack
                     } // ScrollView
                 }// if meal.isEmpty
             }

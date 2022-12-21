@@ -11,8 +11,10 @@ import CarBode
 struct BarcodeScanView: View {
     
     
-    var onProductFound: (String) -> Void
+//    var onProductFound: (String) -> Void
     
+//    @Binding var productId: String
+    @AppStorage("productID") private var productId: String = ""
     @Environment(\.presentationMode) private var presentationMode
     @State var rotate = CBBarcodeView.Orientation.up
     
@@ -26,12 +28,9 @@ struct BarcodeScanView: View {
                 ){
                     //When the scanner found a barcode
 //                    print("BarCodeType =",$0.type.rawValue, "Value =",$0.value)
-
-
-                    onProductFound($0.value)
-                    // call network api
+                    
+                    productId = $0.value
                     presentationMode.wrappedValue.dismiss()
-
                 }
                 
                 
@@ -101,8 +100,6 @@ struct BarcodeScanView: View {
 
 struct BarcodeScanView_Previews: PreviewProvider {
     static var previews: some View {
-        BarcodeScanView(onProductFound: { productId in
-            print(productId)
-        })
+        BarcodeScanView()
     }
 }

@@ -40,9 +40,9 @@ extension CalorieGoalView {
                     VStack() {
                         planBtn()
                         PieChartView(
-                            values: [Double(vm.goals.fats), Double(vm.goals.protein), Double(vm.goals.carbohydrates), Double(vm.goals.carbohydrates)] ,
+                            values: [Double(vm.goals.fats), Double(vm.goals.protein), Double(vm.goals.carbohydrates)] ,
                             colors: [Color.red, Color.yellow, Color.green, .purple],
-                            names: ["Fat", "Protein", "Carbohydrates", "Calories"],
+                            names: ["Fat", "Protein", "Carbohydrates"],
                             backgroundColor: .white, innerRadiusFraction: 0.6)
                         .frame(height: geometry.size.height - 30)
                         

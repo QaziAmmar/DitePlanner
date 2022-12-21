@@ -24,13 +24,13 @@ struct SettingView: View {
                            SettingModel(title: "Preferences", subTitle: "Edit your food preference & Dislikes", image: "preferences", type: .preferences),
                            SettingModel(title: "Change Password", subTitle: "Change your password here", image: "changePassword", type: .changePassword),
                            SettingModel(title: "Calorie & Macro Daily Goals", subTitle: "Create Calorie & Macro Daily Goals", image: "dailyGoal", type: .dailyGoal),
-//                           SettingModel(title: "Calorie & Macro Weekly Goals", subTitle: "Create Calorie & Macro Weekly Goals", image: "weeklyGoal", type: .weeklyGoal),
+                           //                           SettingModel(title: "Calorie & Macro Weekly Goals", subTitle: "Create Calorie & Macro Weekly Goals", image: "weeklyGoal", type: .weeklyGoal),
                            SettingModel(title: "Delete Account", subTitle: "We are really sorry to hear that", image: "deleteAccount", type: .deleteAccount)]
     
     var body: some View {
         loadView()
             .alert(isPresented: $vm.showError) {
-                Alert(title: Text(vm.errorMessage))       
+                Alert(title: Text(vm.errorMessage))
             }
             .alert("Are you sure to delete", isPresented: $showAlert) {
                 Button("Yes", role: .destructive) {
@@ -41,6 +41,7 @@ struct SettingView: View {
                 vm.totalCalories = Int(UserDefaultManager.shared.getGoal(type: DAILY).calories * 5000)
                 vm.consumedCalories = UserDefaultManager.shared.getTotalCalories()
             }
+            
     }
 }
 
@@ -52,7 +53,7 @@ extension SettingView {
         VStack {
             navBarView()
                 .padding(.vertical)
-
+            
             ScrollView(showsIndicators: false) {
                 
                 todayProgressView()
@@ -61,9 +62,9 @@ extension SettingView {
                     SettingRow(setting: settingmodel, onTap: { type in
                         handleNavigation(type: type)
                     })
-                        .padding()
+                    .padding()
                 }
-
+                
                 Button {
                     UserDefaultManager.shared.logout()
                 } label: {
@@ -108,49 +109,51 @@ extension SettingView {
                     Text("\(vm.totalCalories)")
                         .foregroundColor(Color("Purple"))
                 }.padding(.top, 5)
-
-                progressBar(name: "Remaining", calories: "\(vm.totalCalories - vm.consumedCalories) Kcal", color: .red, progress: (1 - vm.caloriesConsumedPercentage()) )
+                
+                progressBar(name: "Remaining", calories: "\((vm.totalCalories - vm.consumedCalories) < 0 ? 0 : vm.totalCalories - vm.consumedCalories ) Kcal", color: .red, progress: (1 - vm.caloriesConsumedPercentage()) )
+                    .padding(.bottom, 10)
+                
                 progressBar(name: "Eaten 🍽️", calories: "\(vm.consumedCalories) Kcal", color: .green, progress: vm.caloriesConsumedPercentage())
                 
             }.padding()
             
-            .background(
-                Rectangle()
-                .cornerRadius(10, corners: .allCorners)
-                .foregroundColor(.white)
-                .shadow(radius: 3)
-            )
+                .background(
+                    Rectangle()
+                        .cornerRadius(10, corners: .allCorners)
+                        .foregroundColor(.white)
+                        .shadow(radius: 3)
+                )
             
         }.padding(10)
-     
+        
     }
     
     func progressBar(name: String, calories: String, color: Color, progress: Double) -> some View {
-
-            VStack {
-                HStack {
-                    Text(name)
-                    Spacer()
-                    Text(calories)
-                        .font(.custom(Nunito.Regular.rawValue, size: 12))
-                        .foregroundColor(.gray)
-                }
-                ZStack {
-                    GeometryReader { geo in
-                        Rectangle()
-                            .cornerRadius(5)
-                            .foregroundColor(.gray.opacity(0.2))
-                            
-                        Rectangle()
-                            .cornerRadius(5)
-                            .foregroundColor(color.opacity(0.9))
-//if progress < 0 then make progress 0
-//                        if progress greate then 1 then  make progress 1
-                            .frame(width: geo.size.width * (progress < 0.0 ? 0.0 : progress > 1 ? 1 : progress))
-                    }
-                        
-                }
+        
+        VStack {
+            HStack {
+                Text(name)
+                Spacer()
+                Text(calories)
+                    .font(.custom(Nunito.Regular.rawValue, size: 12))
+                    .foregroundColor(.gray)
             }
+            ZStack {
+                GeometryReader { geo in
+                    Rectangle()
+                        .cornerRadius(5)
+                        .foregroundColor(.gray.opacity(0.2))
+                    
+                    Rectangle()
+                        .cornerRadius(5)
+                        .foregroundColor(color.opacity(0.9))
+                    //if progress < 0 then make progress 0
+                    //                        if progress greate then 1 then  make progress 1
+                        .frame(width: geo.size.width * (progress < 0.0 ? 0.0 : progress > 1 ? 1 : progress))
+                }
+                
+            }
+        }
         
         
     }
@@ -162,7 +165,7 @@ extension SettingView {
             NavigationLink("", destination: HideNavbarOf(view: EditProfileView()), isActive: $moveToEditProfile)
             NavigationLink("", destination: HideNavbarOf(view: ChangePasswordView()), isActive: $moveToChangePassword)
             NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView(type: DAILY)), isActive: $moveToDailyGoals)
-//            NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView(type: WEEKLY)), isActive: $moveToWeeklyGoals)
+            //            NavigationLink("", destination: HideNavbarOf(view: CalorieGoalView(type: WEEKLY)), isActive: $moveToWeeklyGoals)
         }
         .hidden()
         .frame(height: 0)
@@ -172,7 +175,7 @@ extension SettingView {
 
 // MARK: Custom Function extension
 extension SettingView {
-
+    
     
     func handleNavigation(type: SettingType) {
         switch type {

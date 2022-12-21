@@ -115,7 +115,6 @@ class UserDefaultManager {
         userDefaults.removeObject(forKey: WEEKLY)
         // Delete user start date of the current week.
         userDefaults.removeObject(forKey: UserDefaultEnum.startDateOfWeek.rawValue)
-        userDefaults.removeObject(forKey: UserDefaultEnum.startDateOfWeek.rawValue)
         UserDefaultManager.Authenticated.send(false)
     }
     
@@ -131,8 +130,20 @@ class UserDefaultManager {
     //
     // these user defaults save the date from where you week is started. then use this
     //    date as referce to automatically generate the weekly meal plan.
-    func setStartDateOfWeek(date: Date) {
-        userDefaults.set(date, forKey: UserDefaultEnum.startDateOfWeek.rawValue)
+    func setStartDateOfWeek(date: Date) -> Date {
+        
+        let weekdayName = DateManager.standard.getWeekDayNameWith(from: date)
+        
+        if weekdayName == "Sunday" {
+            userDefaults.set(date, forKey: UserDefaultEnum.startDateOfWeek.rawValue)
+            return date
+        } else {
+            let newdate = Date.today().previous(.sunday)
+            userDefaults.set(newdate, forKey: UserDefaultEnum.startDateOfWeek.rawValue)
+            return newdate
+        }
+        
+        
     }
     func getStartDateOfWeek() -> Date? {
         return userDefaults.value(forKey: UserDefaultEnum.startDateOfWeek.rawValue) as? Date

@@ -104,6 +104,7 @@ extension WeeklyMealListView {
             } else {
                 
                 ForEach(vm.mealArray) { recipe in
+                    
                     MealPlannerItemRow(recipe: recipe, onDelete: { recipe in
                         // on delete function
                         vm.removeMeal(recipe: recipe, dayOfweek: vm.dayOfWeek, mealCategory: title) { error, message in
@@ -115,6 +116,8 @@ extension WeeklyMealListView {
                         }
                         // onDelete function End
                     })
+                    
+                    
                 }
             }
             

@@ -18,6 +18,8 @@ struct ChangePreferenceView: View {
                 vm.getDitePreferenceListFirebase()
                 vm.getDislikeFoodListFirebase()
             }
+
+        
     }
 }
 
@@ -37,6 +39,13 @@ extension ChangePreferenceView {
                         Spacer()
                     }
                     PerferencesList(vm: vm)
+                    
+                    if !(vm.dislike_foods.isEmpty) {
+                        Text("Dislike Food")
+                            .font(Font.custom(Nunito.Bold.rawValue, size: 22))
+                            .foregroundColor(Color(ColorName.appGreen.rawValue))
+                    }
+                    
                     DislikeFoodList(vm: vm)
                 }
             }
